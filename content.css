@@ -1,0 +1,41 @@
+.cgca-copy-button {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2147483647;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 8px;
+  background: #111827;
+  color: #fff;
+  font: 13px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  user-select: none;
+}
+
+.cgca-copy-button:hover {
+  background: #0b1220;
+}
+
+.cgca-copy-button:active {
+  transform: translateY(1px);
+}
+
+.cgca-copy-button[data-state="ok"] {
+  background: #047857;
+}
+
+.cgca-copy-button[data-state="error"] {
+  background: #b91c1c;
+}
+
+.cgca-copy-button[data-state="busy"] {
+  background: #334155;
+  cursor: progress;
+}

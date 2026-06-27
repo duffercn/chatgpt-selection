@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "ChatGPT Copy All",
+  "description": "Copy the current ChatGPT conversation with one click.",
+  "version": "0.2.0",
+  "permissions": ["activeTab", "clipboardWrite", "scripting", "tabs"],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*"
+  ],
+  "action": {
+    "default_title": "Copy ChatGPT conversation",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "copy-chatgpt-conversation": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+C",
+        "mac": "Command+Shift+C"
+      },
+      "description": "Copy the current ChatGPT conversation"
+    }
+  }
+}

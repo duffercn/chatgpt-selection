@@ -1,4 +1,4 @@
-# ChatGPT Copy All
+# Chat Copy All
 
 A small Chrome extension that copies the current ChatGPT conversation with one click.
 
@@ -7,7 +7,7 @@ A small Chrome extension that copies the current ChatGPT conversation with one c
 1. Open `chrome://extensions`.
 2. Enable **Developer mode**.
 3. Click **Load unpacked**.
-4. Select this folder: `/Users/ZhenLi/Project/chatgpt-selection`.
+4. Select this folder: `/Users/zhenli/Documents/chatgpt-selection`.
 
 ## Use
 

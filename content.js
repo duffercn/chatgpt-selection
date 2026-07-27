@@ -1,10 +1,14 @@
 (function () {
-  const SCRIPT_VERSION = "0.2.2";
+  const SCRIPT_VERSION = "0.2.3";
   if (window.__chatgptCopyAllLoaded === SCRIPT_VERSION) return;
   window.__chatgptCopyAllLoaded = SCRIPT_VERSION;
 
   const BUTTON_ID = "cgca-copy-chatgpt-conversation";
   const DEFAULT_LABEL = "Copy chat";
+
+  function isChatGptPage() {
+    return location.hostname === "chatgpt.com" || location.hostname === "chat.openai.com";
+  }
 
   function cleanText(text) {
     return text
@@ -647,7 +651,7 @@
     const existingButton = document.getElementById(BUTTON_ID);
     if (existingButton?.dataset.version === SCRIPT_VERSION) return;
     if (existingButton) existingButton.remove();
-    if (!location.hostname.includes("chatgpt.com") && !location.hostname.includes("chat.openai.com")) return;
+    if (!isChatGptPage()) return;
 
     const button = document.createElement("button");
     button.id = BUTTON_ID;
@@ -662,6 +666,10 @@
 
   chrome.runtime?.onMessage?.addListener((message, _sender, sendResponse) => {
     if (message?.type !== "CHATGPT_COPY_ALL_V2") return false;
+    if (!isChatGptPage()) {
+      sendResponse({ ok: false, error: "Open a ChatGPT tab first." });
+      return false;
+    }
     copyConversation(document.getElementById(BUTTON_ID)).then(sendResponse);
     return true;
   });

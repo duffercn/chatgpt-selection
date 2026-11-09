@@ -1,0 +1,39 @@
+{
+  "data": {
+    "biz_data": {
+      "current_message_id": "a2",
+      "chat_session": {
+        "chat_session_id": "11111111-2222-4333-8444-555555555555",
+        "title": "Fixture"
+      },
+      "chat_messages": [
+        {
+          "message_id": "u1",
+          "parent_id": null,
+          "role": "USER",
+          "fragments": [
+            { "type": "TEXT", "content": "Hello" },
+            { "type": "FILE", "file_name": "notes.pdf" }
+          ]
+        },
+        {
+          "message_id": "a1",
+          "parent_id": "u1",
+          "role": "ASSISTANT",
+          "fragments": [{ "type": "TEXT", "content": "Old branch" }]
+        },
+        {
+          "message_id": "a2",
+          "parent_id": "u1",
+          "role": "ASSISTANT",
+          "fragments": [
+            { "type": "THINKING", "content": "Private reasoning" },
+            { "type": "TEXT", "content": "Current branch" },
+            { "type": "CODE", "language": "js", "content": "const ok = true;" },
+            { "type": "SEARCH_RESULT", "content": "Unsupported visible data" }
+          ]
+        }
+      ]
+    }
+  }
+}

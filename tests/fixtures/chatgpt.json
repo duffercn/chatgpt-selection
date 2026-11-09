@@ -1,0 +1,12 @@
+{
+  "conversation_id": "chatgpt-fixture",
+  "title": "Fixture",
+  "current_node": "a2",
+  "mapping": {
+    "root": { "id": "root", "parent": null, "message": null },
+    "u1": { "id": "u1", "parent": "root", "message": { "author": { "role": "user" }, "content": { "parts": ["Hello"] } } },
+    "a1": { "id": "a1", "parent": "u1", "message": { "author": { "role": "assistant" }, "content": { "parts": ["Old branch"] } } },
+    "a2": { "id": "a2", "parent": "u1", "message": { "author": { "role": "assistant" }, "content": { "parts": ["Current branch", { "content_type": "image_asset_pointer" }] } } },
+    "hidden": { "id": "hidden", "parent": "a2", "message": { "author": { "role": "assistant" }, "content": { "parts": ["Invisible"] }, "metadata": { "is_visually_hidden_from_conversation": true } } }
+  }
+}

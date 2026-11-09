@@ -1,15 +1,18 @@
 {
   "manifest_version": 3,
   "name": "Chat Copy All",
-  "description": "Copy the current ChatGPT conversation with one click.",
-  "version": "0.2.3",
-  "permissions": ["activeTab", "clipboardWrite", "scripting"],
+  "description": "Copy the current conversation from supported AI chat sites.",
+  "version": "0.4.0",
+  "permissions": ["activeTab", "clipboardWrite", "offscreen", "scripting"],
   "host_permissions": [
     "https://chatgpt.com/*",
-    "https://chat.openai.com/*"
+    "https://chat.openai.com/*",
+    "https://claude.ai/*",
+    "https://grok.com/*",
+    "https://chat.deepseek.com/*"
   ],
   "action": {
-    "default_title": "Copy ChatGPT conversation",
+    "default_title": "Copy current conversation",
     "default_popup": "popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
@@ -31,7 +34,10 @@
     {
       "matches": [
         "https://chatgpt.com/*",
-        "https://chat.openai.com/*"
+        "https://chat.openai.com/*",
+        "https://claude.ai/*",
+        "https://grok.com/*",
+        "https://chat.deepseek.com/*"
       ],
       "js": ["content.js"],
       "css": ["content.css"],
@@ -39,12 +45,12 @@
     }
   ],
   "commands": {
-    "copy-chatgpt-conversation": {
+    "copy-current-conversation": {
       "suggested_key": {
         "default": "Ctrl+Shift+C",
         "mac": "Command+Shift+C"
       },
-      "description": "Copy the current ChatGPT conversation"
+      "description": "Copy the current conversation"
     }
   }
 }

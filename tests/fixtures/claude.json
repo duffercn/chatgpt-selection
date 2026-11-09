@@ -1,0 +1,10 @@
+{
+  "uuid": "claude-fixture",
+  "name": "Fixture",
+  "current_leaf_message_uuid": "a2",
+  "chat_messages": [
+    { "uuid": "u1", "parent_message_uuid": "conversation-root", "index": 0, "sender": "human", "content": [{ "type": "text", "text": "Hello" }], "attachments": [{ "file_name": "notes.pdf" }] },
+    { "uuid": "a1", "parent_message_uuid": "u1", "index": 1, "sender": "assistant", "content": [{ "type": "text", "text": "Old branch" }] },
+    { "uuid": "a2", "parent_message_uuid": "u1", "index": 1, "sender": "assistant", "content": [{ "type": "text", "text": "Current branch" }] }
+  ]
+}

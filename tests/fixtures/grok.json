@@ -1,0 +1,9 @@
+{
+  "title": "Fixture",
+  "currentResponseId": "a2",
+  "responses": [
+    { "responseId": "u1", "parentResponseId": "conversation-root", "sender": "user", "message": "Hello" },
+    { "responseId": "a1", "parentResponseId": "u1", "sender": "assistant", "message": "Old branch" },
+    { "responseId": "a2", "parentResponseId": "u1", "sender": "assistant", "message": "Current branch" }
+  ]
+}

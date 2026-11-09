@@ -1,0 +1,17 @@
+{
+  "name": "chat-copy-all",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "clean": "node scripts/clean.mjs",
+    "build": "npm run clean && node scripts/build.mjs",
+    "test": "vitest run",
+    "package": "npm run build && node scripts/package.mjs"
+  },
+  "devDependencies": {
+    "archiver": "^7.0.1",
+    "esbuild": "^0.25.0",
+    "vitest": "^3.2.0"
+  }
+}

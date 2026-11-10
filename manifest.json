@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Chat Copy All",
+  "name": "ChatCopy — Copy AI Conversations",
   "description": "Copy the current conversation from supported AI chat sites.",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "permissions": [
     "activeTab",
     "clipboardWrite",

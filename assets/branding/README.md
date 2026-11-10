@@ -1,13 +1,13 @@
 # ChatCopy logo draft
 
-A white outlined rear speech bubble and teal front bubble form a conversation/copy mark on a navy rounded tile. No letters or third-party provider marks. Approved product name remains Chat Copy All.
+A white outlined rear speech bubble and teal front bubble form a conversation/copy mark on a navy rounded tile. No letters or third-party provider marks. Approved product name: ChatCopy — Copy AI Conversations.
 
 - chatcopy-logo-master.png: generated transparent-corner PNG master.
 - store-icon128.png: 128px store upload candidate.
 - Runtime icons are exported at 16/32/48/128px in icons/.
 - Generated with built-in image_gen on 2026-11-10. Prompt: two overlapping rounded speech bubbles; rear white outline, front solid teal, navy rounded square; readable at 16px; no text, third-party logos or decorative detail. Full prompt recorded in the project vault.
 - Resized with macOS sips; no conversation or authentication data used.
-- Approved by the owner for the 0.5.4 Chrome Web Store submission.
+- Approved by the owner for the 0.5.5 Chrome Web Store submission.
 
 ## Exact generation prompt
 

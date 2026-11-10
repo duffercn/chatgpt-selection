@@ -2,7 +2,7 @@ import { COPY_MESSAGE, WRITE_CLIPBOARD_MESSAGE, copyCurrentConversation } from "
 import { CopyError, ErrorCode } from "../core/errors.js";
 import { adapterForUrl } from "../platforms/registry.js";
 
-const VERSION = "0.5.4";
+const VERSION = "0.5.5";
 const BUTTON_ID = "cgca-copy-current-conversation";
 const DEFAULT_LABEL = "Copy chat";
 
@@ -39,7 +39,7 @@ if (window.__chatCopyAllLoaded !== VERSION) {
       button.dataset.errorCode = result.ok ? "" : result.code || "unknown";
       button.title = result.ok ? "Copy the current conversation" : `${result.code || "error"}: ${result.error}`;
     }
-    if (!result.ok) console.warn("Chat Copy All:", result.code, result.error);
+    if (!result.ok) console.warn("ChatCopy:", result.code, result.error);
     setButtonState(result.ok ? result.action === "download" ? "Export requested" : "Copied" : `Failed: ${result.code || "error"}`, result.ok ? "ok" : "error", result.ok ? 1800 : 5000);
     return result;
   }

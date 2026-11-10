@@ -1,4 +1,4 @@
-# Chat Copy All
+# ChatCopy
 
 A local-first Chrome extension that copies the complete current conversation from supported AI chat sites.
 
@@ -39,7 +39,7 @@ npm test
 npm run build
 ```
 
-Load the generated `dist/` directory from `chrome://extensions` with Developer mode enabled. Reload affected website tabs after reloading the unpacked extension. Create `release/chat-copy-all-0.5.4.zip` with `npm run package`.
+Load the generated `dist/` directory from `chrome://extensions` with Developer mode enabled. Reload affected website tabs after reloading the unpacked extension. Create `release/chat-copy-all-0.5.5.zip` with `npm run package`.
 
 ## Use
 
@@ -67,6 +67,6 @@ Source lives in `src/`. Shared copy orchestration and formatting are separate fr
 
 ## Branding draft
 
-[Logo source and exports](assets/branding/README.md). Version 0.5.4 updates the icon. Product name remains Chat Copy All.
+[Logo source and exports](assets/branding/README.md). Version 0.5.5 updates the icon. Product name: ChatCopy — Copy AI Conversations.
 
 [Privacy policy](privacy-policy.md)

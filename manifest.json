@@ -2,14 +2,30 @@
   "manifest_version": 3,
   "name": "Chat Copy All",
   "description": "Copy the current conversation from supported AI chat sites.",
-  "version": "0.4.0",
-  "permissions": ["activeTab", "clipboardWrite", "offscreen", "scripting"],
+  "version": "0.5.3",
+  "permissions": [
+    "activeTab",
+    "clipboardWrite",
+    "offscreen",
+    "scripting"
+  ],
   "host_permissions": [
     "https://chatgpt.com/*",
     "https://chat.openai.com/*",
     "https://claude.ai/*",
     "https://grok.com/*",
-    "https://chat.deepseek.com/*"
+    "https://chat.deepseek.com/*",
+    "https://www.perplexity.ai/*",
+    "https://perplexity.ai/*",
+    "https://qianwen.com/*",
+    "https://chat2-api.qianwen.com/*",
+    "https://www.qianwen.com/*",
+    "https://kimi.com/*",
+    "https://www.kimi.com/*",
+    "https://chat.qwen.ai/*",
+    "https://doubao.com/*",
+    "https://www.doubao.com/*",
+    "https://gemini.google.com/*"
   ],
   "action": {
     "default_title": "Copy current conversation",
@@ -37,10 +53,24 @@
         "https://chat.openai.com/*",
         "https://claude.ai/*",
         "https://grok.com/*",
-        "https://chat.deepseek.com/*"
+        "https://chat.deepseek.com/*",
+        "https://www.perplexity.ai/*",
+        "https://perplexity.ai/*",
+        "https://qianwen.com/*",
+        "https://www.qianwen.com/*",
+        "https://kimi.com/*",
+        "https://www.kimi.com/*",
+        "https://chat.qwen.ai/*",
+        "https://doubao.com/*",
+        "https://www.doubao.com/*",
+        "https://gemini.google.com/*"
       ],
-      "js": ["content.js"],
-      "css": ["content.css"],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
       "run_at": "document_idle"
     }
   ],

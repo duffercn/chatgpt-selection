@@ -1,13 +1,14 @@
 import { COPY_MESSAGE, WRITE_CLIPBOARD_MESSAGE } from "../core/copy.js";
-import { isSupportedUrl } from "../platforms/registry.js";
+import { adapterForUrl, isSupportedUrl } from "../platforms/registry.js";
 
 chrome.commands.onCommand.addListener(async (command) => {
   if (command !== "copy-current-conversation") return;
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   if (!tab?.id || !isSupportedUrl(tab.url || "")) return;
-  chrome.tabs.sendMessage(tab.id, { type: COPY_MESSAGE }).catch(() => {
+  const message = { type: COPY_MESSAGE, ...(adapterForUrl(tab.url || "")?.id === "kimi" ? { nativeGestureHint: true } : {}) };
+  chrome.tabs.sendMessage(tab.id, message).catch(() => {
     chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ["content.js"] }).then(() => {
-      chrome.tabs.sendMessage(tab.id, { type: COPY_MESSAGE });
+      chrome.tabs.sendMessage(tab.id, message);
     });
   });
 });

@@ -1,0 +1,405 @@
+{
+  "cmd": 3100,
+  "status_code": 0,
+  "status_desc": "OK",
+  "version": "1",
+  "downlink_body": {
+    "pull_singe_chain_downlink_body": {
+      "messages": [
+        {
+          "conversation_id": "12345678901234567",
+          "message_id": "m5-2",
+          "user_type": 2,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "22",
+          "thinking_content": "",
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "b-m5-2",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "ASSISTANT_DOUBAO_5_BEGIN\n这是第5轮中文答复。\nASSISTANT_DOUBAO_5_END",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ],
+          "tts_content": "ASSISTANT_DOUBAO_5_BEGIN\n这是第5轮中文答复。\nASSISTANT_DOUBAO_5_END",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "section_id": "section-test",
+          "bot_reply_message_id": "m5-1",
+          "regen_msg_list": []
+        },
+        {
+          "conversation_id": "12345678901234567",
+          "message_id": "m5-1",
+          "user_type": 1,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "21",
+          "thinking_content": "",
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "b-m5-1",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "USER_DOUBAO_5 中文完整复制测试。",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ],
+          "tts_content": "USER_DOUBAO_5 中文完整复制测试。",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "section_id": "section-test",
+          "bot_reply_message_id": "0",
+          "regen_msg_list": []
+        },
+        {
+          "conversation_id": "12345678901234567",
+          "message_id": "m4-2",
+          "user_type": 2,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "17",
+          "thinking_content": "",
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "b-m4-2",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "ASSISTANT_DOUBAO_4_BEGIN\n这是第4轮中文答复。\nASSISTANT_DOUBAO_4_END",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ],
+          "tts_content": "ASSISTANT_DOUBAO_4_BEGIN\n这是第4轮中文答复。\nASSISTANT_DOUBAO_4_END",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "section_id": "section-test",
+          "bot_reply_message_id": "m4-1",
+          "regen_msg_list": []
+        },
+        {
+          "conversation_id": "12345678901234567",
+          "message_id": "m4-1",
+          "user_type": 1,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "16",
+          "thinking_content": "",
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "b-m4-1",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "USER_DOUBAO_4 中文完整复制测试。",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ],
+          "tts_content": "USER_DOUBAO_4 中文完整复制测试。",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "section_id": "section-test",
+          "bot_reply_message_id": "0",
+          "regen_msg_list": []
+        },
+        {
+          "conversation_id": "12345678901234567",
+          "message_id": "m3-2",
+          "user_type": 2,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "12",
+          "thinking_content": "",
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "b-m3-2",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "ASSISTANT_DOUBAO_3_BEGIN\n这是第3轮中文答复。\n```python\nprint(42)\n```\nASSISTANT_DOUBAO_3_END",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ],
+          "tts_content": "ASSISTANT_DOUBAO_3_BEGIN\n这是第3轮中文答复。\n```python\nprint(42)\n```\nASSISTANT_DOUBAO_3_END",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "section_id": "section-test",
+          "bot_reply_message_id": "m3-1",
+          "regen_msg_list": []
+        },
+        {
+          "conversation_id": "12345678901234567",
+          "message_id": "m3-1",
+          "user_type": 1,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "11",
+          "thinking_content": "",
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "b-m3-1",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "USER_DOUBAO_3 中文完整复制测试。",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ],
+          "tts_content": "USER_DOUBAO_3 中文完整复制测试。",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "section_id": "section-test",
+          "bot_reply_message_id": "0",
+          "regen_msg_list": []
+        },
+        {
+          "conversation_id": "12345678901234567",
+          "message_id": "m2-2",
+          "user_type": 2,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "7",
+          "thinking_content": "",
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "b-m2-2",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "ASSISTANT_DOUBAO_2_BEGIN\n这是第2轮中文答复。\n1. 检查长对话完整性。\n2. 检查长对话完整性。\n3. 检查长对话完整性。\n4. 检查长对话完整性。\n5. 检查长对话完整性。\n6. 检查长对话完整性。\n7. 检查长对话完整性。\n8. 检查长对话完整性。\n9. 检查长对话完整性。\n10. 检查长对话完整性。\n11. 检查长对话完整性。\n12. 检查长对话完整性。\n13. 检查长对话完整性。\n14. 检查长对话完整性。\n15. 检查长对话完整性。\n16. 检查长对话完整性。\n17. 检查长对话完整性。\n18. 检查长对话完整性。\n19. 检查长对话完整性。\n20. 检查长对话完整性。\n21. 检查长对话完整性。\n22. 检查长对话完整性。\n23. 检查长对话完整性。\n24. 检查长对话完整性。\n25. 检查长对话完整性。\n26. 检查长对话完整性。\n27. 检查长对话完整性。\n28. 检查长对话完整性。\n29. 检查长对话完整性。\n30. 检查长对话完整性。\nASSISTANT_DOUBAO_2_END",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ],
+          "tts_content": "ASSISTANT_DOUBAO_2_BEGIN\n这是第2轮中文答复。\n1. 检查长对话完整性。\n2. 检查长对话完整性。\n3. 检查长对话完整性。\n4. 检查长对话完整性。\n5. 检查长对话完整性。\n6. 检查长对话完整性。\n7. 检查长对话完整性。\n8. 检查长对话完整性。\n9. 检查长对话完整性。\n10. 检查长对话完整性。\n11. 检查长对话完整性。\n12. 检查长对话完整性。\n13. 检查长对话完整性。\n14. 检查长对话完整性。\n15. 检查长对话完整性。\n16. 检查长对话完整性。\n17. 检查长对话完整性。\n18. 检查长对话完整性。\n19. 检查长对话完整性。\n20. 检查长对话完整性。\n21. 检查长对话完整性。\n22. 检查长对话完整性。\n23. 检查长对话完整性。\n24. 检查长对话完整性。\n25. 检查长对话完整性。\n26. 检查长对话完整性。\n27. 检查长对话完整性。\n28. 检查长对话完整性。\n29. 检查长对话完整性。\n30. 检查长对话完整性。\nASSISTANT_DOUBAO_2_END",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "section_id": "section-test",
+          "bot_reply_message_id": "m2-1",
+          "regen_msg_list": []
+        },
+        {
+          "conversation_id": "12345678901234567",
+          "message_id": "m2-1",
+          "user_type": 1,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "6",
+          "thinking_content": "",
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "b-m2-1",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "USER_DOUBAO_2 中文完整复制测试。",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ],
+          "tts_content": "USER_DOUBAO_2 中文完整复制测试。",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "section_id": "section-test",
+          "bot_reply_message_id": "0",
+          "regen_msg_list": []
+        },
+        {
+          "conversation_id": "12345678901234567",
+          "message_id": "m1-2",
+          "user_type": 2,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "2",
+          "thinking_content": "",
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "b-m1-2",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "ASSISTANT_DOUBAO_1_BEGIN\n这是第1轮中文答复。\nASSISTANT_DOUBAO_1_END",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ],
+          "tts_content": "ASSISTANT_DOUBAO_1_BEGIN\n这是第1轮中文答复。\nASSISTANT_DOUBAO_1_END",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "section_id": "section-test",
+          "bot_reply_message_id": "m1-1",
+          "regen_msg_list": []
+        },
+        {
+          "conversation_id": "12345678901234567",
+          "message_id": "m1-1",
+          "user_type": 1,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "1",
+          "thinking_content": "",
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "b-m1-1",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "USER_DOUBAO_1 中文完整复制测试。",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ],
+          "tts_content": "USER_DOUBAO_1 中文完整复制测试。",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "section_id": "section-test",
+          "bot_reply_message_id": "0",
+          "regen_msg_list": []
+        }
+      ],
+      "has_more": false,
+      "regen_messages": {},
+      "msg_cursor": "1"
+    }
+  }
+}

@@ -13,7 +13,12 @@ describe("platform adapters", () => {
     expect(adapterForUrl("https://claude.ai/chat/123")?.id).toBe("claude");
     expect(adapterForUrl("https://grok.com/c/123")?.id).toBe("grok");
     expect(adapterForUrl("https://chat.deepseek.com/a/chat/s/11111111-2222-4333-8444-555555555555")?.id).toBe("deepseek");
-    expect(adapterForUrl("https://www.doubao.com/chat/123")).toBeNull();
+    expect(adapterForUrl("https://www.perplexity.ai/session/11111111-2222-4333-8444-555555555555")?.id).toBe("perplexity");
+    expect(adapterForUrl("https://qianwen.com/chat/11111111222243338444555555555555")?.id).toBe("qianwen");
+    expect(adapterForUrl("https://kimi.com/chat/123")?.id).toBe("kimi");
+    expect(adapterForUrl("https://chat.qwen.ai/c/123")?.id).toBe("qwen");
+    expect(adapterForUrl("https://www.doubao.com/chat/123")?.id).toBe("doubao");
+    expect(adapterForUrl("https://gemini.google.com/app/0123456789abcdef")?.id).toBe("gemini");
     expect(adapterForUrl("https://example.com")).toBeNull();
   });
 

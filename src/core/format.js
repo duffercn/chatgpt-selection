@@ -1,7 +1,7 @@
 import { cleanText } from "./content.js";
 
 const LABELS = { user: "User", tool: "Tool", system: "System" };
-const ASSISTANT_LABELS = { chatgpt: "ChatGPT", claude: "Claude", grok: "Grok", deepseek: "DeepSeek" };
+const ASSISTANT_LABELS = { chatgpt: "ChatGPT", claude: "Claude", grok: "Grok", deepseek: "DeepSeek", perplexity: "Perplexity", qianwen: "Qianwen", doubao: "Doubao", gemini: "Gemini" };
 
 function formatAttachment(item) {
   const name = item?.name || item?.fileName;

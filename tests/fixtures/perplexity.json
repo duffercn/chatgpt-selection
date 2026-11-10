@@ -1,0 +1,335 @@
+{
+  "status": "success",
+  "entries": [
+    {
+      "uuid": "aaaaaaaa-0000-4000-8000-000000000001",
+      "frontend_uuid": "aaaaaaaa-0000-4000-8000-000000000001",
+      "backend_uuid": "dddddddd-0000-4000-8000-00000000000d",
+      "context_uuid": "cccccccc-0000-4000-8000-00000000000c",
+      "frontend_context_uuid": "cccccccc-0000-4000-8000-00000000000c",
+      "query_str": "[COPY-QA-T1] 请列出三种常见的排序算法，并说明最坏时间复杂度。",
+      "status": "COMPLETED",
+      "step_type": "FINAL",
+      "blocks": [
+        {
+          "intended_usage": "plan",
+          "plan_block": {
+            "goals": []
+          }
+        },
+        {
+          "intended_usage": "workflow_root",
+          "workflow_block": {
+            "status": "WORKFLOW_COMPLETED",
+            "snapshots": [],
+            "steps": [
+              {
+                "status": "WORKFLOW_COMPLETED",
+                "unnest_items": true,
+                "items": [
+                  {
+                    "type": "WORKFLOW_ITEM_TEXT",
+                    "variant": "answer",
+                    "display_mode": "WORKFLOW_ITEM_ALWAYS_EXPAND",
+                    "payload": {
+                      "text_payload": {
+                        "variant": "answer",
+                        "is_streaming": false,
+                        "text": "[COPY-QA-A1] 三种常见排序算法：\n\n| 算法 | 最坏时间复杂度 |\n| --- | --- |\n| 快速排序 | O(n²) |\n| 归并排序 | O(n log n) |\n| 冒泡排序 | O(n²) |\n\n示例代码：\n\n```python\ndef bubble(values):\n    items = list(values)\n    for i in range(len(items)):\n        for j in range(len(items) - 1 - i):\n            if items[j] > items[j + 1]:\n                items[j], items[j + 1] = items[j + 1], items[j]\n    return items\n```\n\n[COPY-QA-END-A1]",
+                        "chunks": [
+                          "[COPY-QA-A1] 三种常见排序算法：\n\n| 算法 | 最坏",
+                          "时间复杂度 |\n| --- | --- |\n| 快速排序 | O(n²) |\n| 归并排序 | O(n log n) |\n",
+                          "| 冒泡排序 | O(n²) |\n\n示例代码：\n\n```python\ndef bubble(values):\n    items = list(values)\n",
+                          "    for i in range(len(items)):\n        for j in range(len(items) - 1 - i):\n",
+                          "            if items[j] > items[j + 1]:\n                items[j], items[j + 1] = items[j + 1], items[j]\n",
+                          "    return items\n```\n\n[COPY-QA-END-A1]"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "intended_usage": "answer_tabs",
+          "answer_tabs_block": {
+            "modes": [
+              {
+                "answer_mode_type": "ANSWER"
+              },
+              {
+                "answer_mode_type": "IMAGE",
+                "has_preview": false
+              }
+            ],
+            "reformulated_queries": []
+          }
+        },
+        {
+          "intended_usage": "pending_followups",
+          "pending_followups_block": {
+            "followups": []
+          }
+        }
+      ]
+    },
+    {
+      "uuid": "aaaaaaaa-0000-4000-8000-000000000002",
+      "frontend_uuid": "aaaaaaaa-0000-4000-8000-000000000002",
+      "backend_uuid": "bbbbbbb2-2222-4222-8222-222222222222",
+      "context_uuid": "cccccccc-0000-4000-8000-00000000000c",
+      "frontend_context_uuid": "cccccccc-0000-4000-8000-00000000000c",
+      "query_str": "[COPY-QA-T2] 用一句话解释二分查找的前提条件。",
+      "status": "COMPLETED",
+      "step_type": "FINAL",
+      "blocks": [
+        {
+          "intended_usage": "workflow_root",
+          "workflow_block": {
+            "status": "WORKFLOW_COMPLETED",
+            "snapshots": [],
+            "steps": [
+              {
+                "status": "WORKFLOW_COMPLETED",
+                "unnest_items": true,
+                "items": [
+                  {
+                    "type": "WORKFLOW_ITEM_TEXT",
+                    "variant": "answer",
+                    "display_mode": "WORKFLOW_ITEM_ALWAYS_EXPAND",
+                    "payload": {
+                      "text_payload": {
+                        "variant": "answer",
+                        "is_streaming": false,
+                        "text": "[COPY-QA-A2] 二分查找要求数据已按查找键有序排列。 [COPY-QA-END-A2]",
+                        "chunks": [
+                          "[COPY-QA-A2] 二分查找要求数据已按查找键",
+                          "有序排列。 [COPY-QA-END-A2]"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "uuid": "aaaaaaaa-0000-4000-8000-000000000004",
+      "frontend_uuid": "aaaaaaaa-0000-4000-8000-000000000004",
+      "backend_uuid": "bbbbbbb4-4444-4444-8444-444444444444",
+      "context_uuid": "cccccccc-0000-4000-8000-00000000000c",
+      "frontend_context_uuid": "cccccccc-0000-4000-8000-00000000000c",
+      "query_str": "[COPY-QA-T4] 给出一个使用二分查找查找边界的 Python 示例。",
+      "status": "COMPLETED",
+      "step_type": "FINAL",
+      "blocks": [
+        {
+          "intended_usage": "workflow_root",
+          "workflow_block": {
+            "status": "WORKFLOW_COMPLETED",
+            "snapshots": [],
+            "steps": [
+              {
+                "status": "WORKFLOW_COMPLETED",
+                "unnest_items": true,
+                "items": [
+                  {
+                    "type": "WORKFLOW_ITEM_TEXT",
+                    "variant": "answer",
+                    "display_mode": "WORKFLOW_ITEM_ALWAYS_EXPAND",
+                    "payload": {
+                      "text_payload": {
+                        "variant": "answer",
+                        "is_streaming": false,
+                        "text": "[COPY-QA-A4] 下面的函数返回第一个不小于目标值的下标：\n\n```python\ndef lower_bound(values, target):\n    low, high = 0, len(values)\n    while low < high:\n        mid = (low + high) // 2\n        if values[mid] < target:\n            low = mid + 1\n        else:\n            high = mid\n    return low\n```\n\n[COPY-QA-END-A4]",
+                        "chunks": [
+                          "[COPY-QA-A4] 下面的函数返回第一个不小于目标值的下标：\n\n```python\ndef lower_bound(values, target):\n",
+                          "    low, high = 0, len(values)\n    while low < high:\n        mid = (low + high) // 2\n",
+                          "        if values[mid] < target:\n            low = mid + 1\n        else:\n            high = mid\n    return low\n```\n\n[COPY-QA-END-A4]"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "uuid": "aaaaaaaa-0000-4000-8000-000000000003",
+      "frontend_uuid": "aaaaaaaa-0000-4000-8000-000000000003",
+      "backend_uuid": "bbbbbbb3-3333-4333-8333-333333333333",
+      "context_uuid": "cccccccc-0000-4000-8000-00000000000c",
+      "frontend_context_uuid": "cccccccc-0000-4000-8000-00000000000c",
+      "query_str": "[COPY-QA-T3] 这两种排序算法在稳定性上有什么区别？",
+      "status": "COMPLETED",
+      "step_type": "FINAL",
+      "blocks": [
+        {
+          "intended_usage": "workflow_root",
+          "workflow_block": {
+            "status": "WORKFLOW_COMPLETED",
+            "snapshots": [],
+            "steps": [
+              {
+                "status": "WORKFLOW_COMPLETED",
+                "unnest_items": true,
+                "items": [
+                  {
+                    "type": "WORKFLOW_ITEM_TEXT",
+                    "variant": "answer",
+                    "display_mode": "WORKFLOW_ITEM_ALWAYS_EXPAND",
+                    "payload": {
+                      "text_payload": {
+                        "variant": "answer",
+                        "is_streaming": false,
+                        "text": "[COPY-QA-A3] 归并排序稳定，冒泡排序也稳定；快速排序通常不稳定，因为交换会改变相等元素的相对顺序。 [COPY-QA-END-A3]",
+                        "chunks": [
+                          "[COPY-QA-A3] 归并排序稳定，冒泡排序也稳定；",
+                          "快速排序通常不稳定，因为交换会改变相等元素的相对顺序。 [COPY-QA-END-A3]"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "uuid": "aaaaaaaa-0000-4000-8000-000000000005",
+      "frontend_uuid": "aaaaaaaa-0000-4000-8000-000000000005",
+      "backend_uuid": "bbbbbbb5-5555-4555-8555-555555555555",
+      "context_uuid": "cccccccc-0000-4000-8000-00000000000c",
+      "frontend_context_uuid": "cccccccc-0000-4000-8000-00000000000c",
+      "query_str": "[COPY-QA-T5] 总结以上内容，用列表形式给出三点结论。",
+      "status": "COMPLETED",
+      "step_type": "FINAL",
+      "blocks": [
+        {
+          "intended_usage": "workflow_root",
+          "workflow_block": {
+            "status": "WORKFLOW_COMPLETED",
+            "snapshots": [],
+            "steps": [
+              {
+                "status": "WORKFLOW_COMPLETED",
+                "unnest_items": true,
+                "items": [
+                  {
+                    "type": "WORKFLOW_ITEM_TEXT",
+                    "variant": "answer",
+                    "display_mode": "WORKFLOW_ITEM_ALWAYS_EXPAND",
+                    "payload": {
+                      "text_payload": {
+                        "variant": "answer",
+                        "is_streaming": false,
+                        "text": "[COPY-QA-A5] 三点结论：\n\n1. 快速排序平均最快，但最坏为 O(n²)。\n2. 归并排序最坏为 O(n log n)，且稳定。\n3. 二分查找与边界查找都必须先有序。\n\n[COPY-QA-END-A5]",
+                        "chunks": [
+                          "[COPY-QA-A5] 三点结论：\n\n1. 快速排序平均最快，但最坏为 O(n²)。\n",
+                          "2. 归并排序最坏为 O(n log n)，且稳定。\n3. 二分查找与边界查找都必须先有序。\n\n[COPY-QA-END-A5]"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "background_entries": [],
+  "first_entry": {
+    "uuid": "aaaaaaaa-0000-4000-8000-000000000001",
+    "frontend_uuid": "aaaaaaaa-0000-4000-8000-000000000001",
+    "backend_uuid": "dddddddd-0000-4000-8000-00000000000d",
+    "context_uuid": "cccccccc-0000-4000-8000-00000000000c",
+    "frontend_context_uuid": "cccccccc-0000-4000-8000-00000000000c",
+    "query_str": "[COPY-QA-T1] 请列出三种常见的排序算法，并说明最坏时间复杂度。",
+    "status": "COMPLETED",
+    "step_type": "FINAL",
+    "blocks": [
+      {
+        "intended_usage": "plan",
+        "plan_block": {
+          "goals": []
+        }
+      },
+      {
+        "intended_usage": "workflow_root",
+        "workflow_block": {
+          "status": "WORKFLOW_COMPLETED",
+          "snapshots": [],
+          "steps": [
+            {
+              "status": "WORKFLOW_COMPLETED",
+              "unnest_items": true,
+              "items": [
+                {
+                  "type": "WORKFLOW_ITEM_TEXT",
+                  "variant": "answer",
+                  "display_mode": "WORKFLOW_ITEM_ALWAYS_EXPAND",
+                  "payload": {
+                    "text_payload": {
+                      "variant": "answer",
+                      "is_streaming": false,
+                      "text": "[COPY-QA-A1] 三种常见排序算法：\n\n| 算法 | 最坏时间复杂度 |\n| --- | --- |\n| 快速排序 | O(n²) |\n| 归并排序 | O(n log n) |\n| 冒泡排序 | O(n²) |\n\n示例代码：\n\n```python\ndef bubble(values):\n    items = list(values)\n    for i in range(len(items)):\n        for j in range(len(items) - 1 - i):\n            if items[j] > items[j + 1]:\n                items[j], items[j + 1] = items[j + 1], items[j]\n    return items\n```\n\n[COPY-QA-END-A1]",
+                      "chunks": [
+                        "[COPY-QA-A1] 三种常见排序算法：\n\n| 算法 | 最坏",
+                        "时间复杂度 |\n| --- | --- |\n| 快速排序 | O(n²) |\n| 归并排序 | O(n log n) |\n",
+                        "| 冒泡排序 | O(n²) |\n\n示例代码：\n\n```python\ndef bubble(values):\n    items = list(values)\n",
+                        "    for i in range(len(items)):\n        for j in range(len(items) - 1 - i):\n",
+                        "            if items[j] > items[j + 1]:\n                items[j], items[j + 1] = items[j + 1], items[j]\n",
+                        "    return items\n```\n\n[COPY-QA-END-A1]"
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "intended_usage": "answer_tabs",
+        "answer_tabs_block": {
+          "modes": [
+            {
+              "answer_mode_type": "ANSWER"
+            },
+            {
+              "answer_mode_type": "IMAGE",
+              "has_preview": false
+            }
+          ],
+          "reformulated_queries": []
+        }
+      },
+      {
+        "intended_usage": "pending_followups",
+        "pending_followups_block": {
+          "followups": []
+        }
+      }
+    ]
+  },
+  "has_next_page": false,
+  "latest_entry": null,
+  "next_cursor": null,
+  "thread_metadata": {
+    "title": "Fixture conversation",
+    "parent_info": null,
+    "workflow_snapshots": null
+  }
+}

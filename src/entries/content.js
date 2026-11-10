@@ -2,7 +2,7 @@ import { COPY_MESSAGE, WRITE_CLIPBOARD_MESSAGE, copyCurrentConversation } from "
 import { CopyError, ErrorCode } from "../core/errors.js";
 import { adapterForUrl } from "../platforms/registry.js";
 
-const VERSION = "0.4.0";
+const VERSION = "0.5.3";
 const BUTTON_ID = "cgca-copy-current-conversation";
 const DEFAULT_LABEL = "Copy chat";
 
@@ -40,7 +40,7 @@ if (window.__chatCopyAllLoaded !== VERSION) {
       button.title = result.ok ? "Copy the current conversation" : `${result.code || "error"}: ${result.error}`;
     }
     if (!result.ok) console.warn("Chat Copy All:", result.code, result.error);
-    setButtonState(result.ok ? "Copied" : `Failed: ${result.code || "error"}`, result.ok ? "ok" : "error", result.ok ? 1800 : 5000);
+    setButtonState(result.ok ? result.action === "download" ? "Export requested" : "Copied" : `Failed: ${result.code || "error"}`, result.ok ? "ok" : "error", result.ok ? 1800 : 5000);
     return result;
   }
 
@@ -53,12 +53,26 @@ if (window.__chatCopyAllLoaded !== VERSION) {
     button.type = "button";
     button.textContent = DEFAULT_LABEL;
     button.title = "Copy the current conversation";
-    button.addEventListener("click", runCopy);
+    button.addEventListener("click", () => runCopy());
     document.documentElement.appendChild(button);
   }
 
   chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     if (message?.type !== COPY_MESSAGE) return false;
+    if (message.nativeGestureHint && adapterForUrl(location.href)?.id === "kimi") {
+      setButtonState("Click to copy", "", 5000);
+      document.getElementById(BUTTON_ID)?.setAttribute("title", "Click this button to use Kimi's native clipboard copy.");
+      sendResponse({ ok: false, code: ErrorCode.CLIPBOARD_FAILED, error: "Kimi's native clipboard copy requires a page click. Click Copy chat." });
+      return false;
+    }
+    if (message.handoff && adapterForUrl(location.href)?.copyNative) {
+      // Acknowledge receipt, then let the popup close and return focus before
+      // the website's own clipboard / export code runs. The page button keeps
+      // displaying the actual result, including native failures.
+      void runCopy();
+      sendResponse({ accepted: true });
+      return false;
+    }
     runCopy().then(sendResponse);
     return true;
   });

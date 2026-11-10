@@ -27,13 +27,17 @@ function activeLeaf(data, nodes) {
   throw new CopyError(ErrorCode.INVALID_RESPONSE, "Grok did not identify one active conversation branch.");
 }
 
+function nodeText(node) {
+  if (typeof node.message === "string") return node.message;
+  if (typeof node.text === "string") return node.text;
+  if (typeof node.content === "string") return node.content;
+  return textFromBlocks(node.content || node.message?.content || node.parts);
+}
+
 function grokText(node) {
-  if (typeof node.message === "string") return cleanText(node.message);
-  if (typeof node.text === "string") return cleanText(node.text);
-  if (typeof node.content === "string") return cleanText(node.content);
-  const blocks = node.content || node.message?.content || node.parts;
-  const text = textFromBlocks(blocks);
-  const attachments = [...(node.imageAttachments || []), ...(node.fileAttachments || [])].map(attachmentPlaceholder);
+  const text = nodeText(node);
+  const attachments = [...(node.imageAttachments || []), ...(node.fileAttachments || [])]
+    .map(attachmentPlaceholder);
   return cleanText([text, ...attachments].filter(Boolean).join("\n\n"));
 }
 

@@ -1,0 +1,182 @@
+{
+  "code": 0,
+  "success": true,
+  "msg": "success",
+  "httpCode": 200,
+  "data": {
+    "have_next_page": false,
+    "list": [
+      {
+        "session_id": "5f0c2d3e-0000-4a1b-9c7d-000000000001",
+        "req_id": "req-fixture-turn-2",
+        "created_at": 1794218537695,
+        "updated_at": 1794218600000,
+        "event": "complete",
+        "error_code": 0,
+        "error_msg": "",
+        "request_messages": [
+          {
+            "mime_type": "text/plain",
+            "content": "第二轮：请用 Python 写一个快速排序，并解释分区步骤。",
+            "meta_data": {
+              "ori_query": "第二轮：请用 Python 写一个快速排序，并解释分区步骤。"
+            }
+          }
+        ],
+        "response_messages": [
+          {
+            "mime_type": "signal/post",
+            "status": "complete",
+            "meta_data": {
+              "operation_types": [
+                [
+                  "regenerate"
+                ]
+              ],
+              "intent_content": "Synthetic intent",
+              "intent_data": "{}",
+              "ori_query": "第二轮：请用 Python 写一个快速排序，并解释分区步骤。",
+              "generate_mode": "<string>",
+              "agent_mode": "<string>",
+              "scene": "<string>"
+            }
+          },
+          {
+            "mime_type": "bar/progress",
+            "status": "complete",
+            "meta_data": {
+              "type": "generated"
+            }
+          },
+          {
+            "mime_type": "bar/iframe",
+            "status": "complete",
+            "meta_data": {
+              "sources": []
+            }
+          },
+          {
+            "mime_type": "multi_load/iframe",
+            "status": "complete",
+            "content": "好的，下面是快速排序的实现。\n\n```python\ndef quick_sort(items):\n    if len(items) <= 1:\n        return items\n    pivot = items[len(items) // 2]\n    left = [x for x in items if x < pivot]\n    middle = [x for x in items if x == pivot]\n    right = [x for x in items if x > pivot]\n    return quick_sort(left) + middle + quick_sort(right)\n```\n\n分区以中间元素为基准，把小于、等于、大于基准的元素分别归到三段，再递归处理左右两段。\n\n复制结束标记：COPY-QA-END-2\n\n[[inline_action_reply_1]]",
+            "meta_data": {
+              "multi_load": [
+                {
+                  "type": "inline_action_reply",
+                  "source_seq": "inline_action_reply_1",
+                  "content": {
+                    "schema": "inline_action_reply",
+                    "stat_scene": "chat",
+                    "text": "能改成迭代版本吗？",
+                    "stat_key": "fixture-suggestion-key",
+                    "icon_type": "text"
+                  }
+                }
+              ],
+              "ext_info": {},
+              "first_packet": true
+            }
+          },
+          {
+            "mime_type": "survey/card",
+            "status": "complete",
+            "content": "",
+            "meta_data": {
+              "questionnaire": true,
+              "context": {},
+              "card_type": "<string>",
+              "title": "Synthetic survey",
+              "plan_id": "<string>",
+              "questionnaire_options": {}
+            }
+          }
+        ]
+      },
+      {
+        "session_id": "5f0c2d3e-0000-4a1b-9c7d-000000000001",
+        "req_id": "req-fixture-turn-1",
+        "created_at": 1794218361754,
+        "updated_at": 1794218400000,
+        "event": "complete",
+        "error_code": 0,
+        "error_msg": "",
+        "request_messages": [
+          {
+            "mime_type": "text/plain",
+            "content": "第一轮：帮我写一段中文问候语，并加一个 JavaScript 例子。\n\n开头标记：COPY-QA-START-1",
+            "meta_data": {
+              "ori_query": "第一轮：帮我写一段中文问候语，并加一个 JavaScript 例子。\n\n开头标记：COPY-QA-START-1"
+            }
+          }
+        ],
+        "response_messages": [
+          {
+            "mime_type": "signal/post",
+            "status": "complete",
+            "meta_data": {
+              "operation_types": [
+                [
+                  "regenerate"
+                ]
+              ],
+              "intent_content": "Synthetic intent",
+              "intent_data": "{}",
+              "ori_query": "第一轮：帮我写一段中文问候语，并加一个 JavaScript 例子。\n\n开头标记：COPY-QA-START-1",
+              "generate_mode": "<string>",
+              "agent_mode": "<string>",
+              "scene": "<string>"
+            }
+          },
+          {
+            "mime_type": "bar/progress",
+            "status": "complete",
+            "meta_data": {
+              "type": "generated"
+            }
+          },
+          {
+            "mime_type": "bar/iframe",
+            "status": "complete",
+            "meta_data": {
+              "sources": []
+            }
+          },
+          {
+            "mime_type": "multi_load/iframe",
+            "status": "complete",
+            "content": "你好，很高兴见到你！\n\n```javascript\nconst greeting = (name) => `你好，${name}！`;\nconsole.log(greeting(\"朋友\"));\n```\n\n如需更正式的措辞或英文版本，告诉我即可。\n\n[[inline_action_reply_1]]",
+            "meta_data": {
+              "multi_load": [
+                {
+                  "type": "inline_action_reply",
+                  "source_seq": "inline_action_reply_1",
+                  "content": {
+                    "schema": "inline_action_reply",
+                    "stat_scene": "chat",
+                    "text": "再给一个英文版本",
+                    "stat_key": "fixture-suggestion-key-2",
+                    "icon_type": "text"
+                  }
+                }
+              ],
+              "ext_info": {}
+            }
+          },
+          {
+            "mime_type": "survey/card",
+            "status": "complete",
+            "content": "",
+            "meta_data": {
+              "questionnaire": true,
+              "context": {},
+              "card_type": "<string>",
+              "title": "Synthetic survey",
+              "plan_id": "<string>",
+              "questionnaire_options": {}
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

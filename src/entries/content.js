@@ -2,7 +2,7 @@ import { COPY_MESSAGE, WRITE_CLIPBOARD_MESSAGE, copyCurrentConversation } from "
 import { CopyError, ErrorCode } from "../core/errors.js";
 import { adapterForUrl } from "../platforms/registry.js";
 
-const VERSION = "0.5.3";
+const VERSION = "0.5.4";
 const BUTTON_ID = "cgca-copy-current-conversation";
 const DEFAULT_LABEL = "Copy chat";
 

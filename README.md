@@ -39,7 +39,7 @@ npm test
 npm run build
 ```
 
-Load the generated `dist/` directory from `chrome://extensions` with Developer mode enabled. Reload affected website tabs after reloading the unpacked extension. Create `release/chat-copy-all-0.5.3.zip` with `npm run package`.
+Load the generated `dist/` directory from `chrome://extensions` with Developer mode enabled. Reload affected website tabs after reloading the unpacked extension. Create `release/chat-copy-all-0.5.4.zip` with `npm run package`.
 
 ## Use
 
@@ -64,3 +64,9 @@ Load the generated `dist/` directory from `chrome://extensions` with Developer m
 ## Architecture
 
 Source lives in `src/`. Shared copy orchestration and formatting are separate from platform adapters. `esbuild` creates browser-ready bundles, and Vitest fixtures verify current-branch selection and response conversion without containing real conversation data.
+
+## Branding draft
+
+[Logo source and exports](assets/branding/README.md). Version 0.5.4 updates the icon. Product name remains Chat Copy All.
+
+[Privacy policy](privacy-policy.md)

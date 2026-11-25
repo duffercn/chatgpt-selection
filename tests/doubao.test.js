@@ -67,3 +67,73 @@ describe("Doubao observed message-chain API", () => {
     expect(writeText.mock.calls[0][0].startsWith("User:\nUSER_DOUBAO_1")).toBe(true);
   });
 });
+
+describe("doubao web-search replies", () => {
+  const searchFixture = () => JSON.parse(readFileSync(new URL("fixtures/doubao-search.json", import.meta.url), "utf8"));
+  const searchConvId = "70000000000000001";
+
+  it("accepts a message with a prose block plus a 10025 search block", () => {
+    const result = parseDoubaoConversation(searchFixture(), searchConvId);
+    expect(result.messages).toHaveLength(8);
+    expect(result.messages.map((m) => m.role[0]).join("")).toBe("uauauaua");
+    // Text comes only from the prose blocks, never from the search card.
+    // The fixture walks the API's newest-first order, so index 1 carries the
+    // last-written mark.
+    expect(result.messages[0].text).toBe("USER_MARK_8".repeat(3));
+    expect(result.messages[1].text).toBe("ASSISTANT_MARK_7".repeat(3));
+  });
+
+  it("orders messages by numeric index even though the index is a string", () => {
+    const result = parseDoubaoConversation(searchFixture(), searchConvId);
+    // Ascending index order means the fixture's reverse-written marks appear
+    // as 8,7 / 6,5 / 4,3 / 2,1 pairs.
+    const texts = result.messages.map((m) => m.text);
+    expect(texts[0].startsWith("USER_MARK_8")).toBe(true);
+    expect(texts.at(-1).startsWith("ASSISTANT_MARK_1")).toBe(true);
+  });
+
+  it("surfaces search results as references on the reply that used them", () => {
+    const result = parseDoubaoConversation(searchFixture(), searchConvId);
+    const withRefs = result.messages.filter((m) => m.references?.length);
+    expect(withRefs).toHaveLength(1);
+    expect(withRefs[0].role).toBe("assistant");
+    expect(withRefs[0].references[0]).toEqual({ title: "Example result", url: "https://example.invalid/a" });
+  });
+
+  it("still rejects an unknown block type alongside prose", () => {
+    const data = searchFixture();
+    data.downlink_body.pull_singe_chain_downlink_body.messages[1].content_block.push({
+      block_type: 99999, block_id: "x", parent_id: "0", content: {}, meta_info: [], is_finish: true, extra_info: {}, append_fields: []
+    });
+    expect(() => parseDoubaoConversation(data, searchConvId)).toThrow(/unverified rich content/);
+  });
+
+  it("rejects two prose blocks in one message", () => {
+    const data = searchFixture();
+    const blocks = data.downlink_body.pull_singe_chain_downlink_body.messages[1].content_block;
+    blocks.push(JSON.parse(JSON.stringify(blocks[0])));
+    expect(() => parseDoubaoConversation(data, searchConvId)).toThrow(/exactly one prose block/);
+  });
+
+  it("rejects a message with only a search block and no prose", () => {
+    const data = searchFixture();
+    const message = data.downlink_body.pull_singe_chain_downlink_body.messages[1];
+    message.content_block = message.content_block.filter((b) => b.block_type === 10025);
+    expect(() => parseDoubaoConversation(data, searchConvId)).toThrow(/no content blocks|exactly one prose block/);
+  });
+});
+
+describe("doubao failure diagnostics", () => {
+  it("attaches a content-free shape summary without lengthening the message", async () => {
+    const fixture = JSON.parse(readFileSync(new URL("fixtures/doubao-search.json", import.meta.url), "utf8"));
+    fixture.downlink_body.pull_singe_chain_downlink_body.has_more = true;
+    const { summarizeDoubaoResponse } = await import("../src/platforms/doubao-shape.js");
+    const shape = summarizeDoubaoResponse(fixture, "70000000000000001");
+    expect(shape.message_count).toBe(8);
+    expect(shape.has_more).toBe(true);
+    // The summary must never carry conversation text.
+    expect(JSON.stringify(shape)).not.toMatch(/USER_MARK|ASSISTANT_MARK/);
+    expect(() => parseDoubaoConversation(fixture, "70000000000000001"))
+      .toThrow(/paginated/);
+  });
+});

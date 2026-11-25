@@ -3,6 +3,12 @@ import { cleanText } from "./content.js";
 const LABELS = { user: "User", tool: "Tool", system: "System" };
 const ASSISTANT_LABELS = { chatgpt: "ChatGPT", claude: "Claude", grok: "Grok", deepseek: "DeepSeek", perplexity: "Perplexity", qianwen: "Qianwen", doubao: "Doubao", gemini: "Gemini" };
 
+// Messages are separated by a rule that cannot collide with conversation text.
+// A plain `---` was ambiguous: assistants routinely emit Markdown horizontal
+// rules, so a pasted transcript had no trustworthy message boundary. Box-drawing
+// characters are not Markdown syntax and are unlikely to appear in replies.
+const MESSAGE_SEPARATOR = "\n\n────────────────────\n\n";
+
 function formatAttachment(item) {
   const name = item?.name || item?.fileName;
   if (name) return `[Attachment: ${name}]`;
@@ -25,5 +31,5 @@ export function formatConversation(conversation) {
       ].filter(Boolean).join("\n\n"));
       return `${label}:\n${body}`;
     })
-    .join("\n\n---\n\n");
+    .join(MESSAGE_SEPARATOR);
 }

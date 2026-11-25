@@ -78,7 +78,7 @@ describe("Perplexity adapter", () => {
   it("formats into a role-labelled transcript", () => {
     const transcript = formatConversation(parsePerplexityConversation(fixture()));
     expect(transcript.startsWith("User:\n[COPY-QA-T1]")).toBe(true);
-    expect(transcript).toContain("\n\n---\n\nPerplexity:\n[COPY-QA-A1]");
+    expect(transcript).toContain("\n\n────────────────────\n\nPerplexity:\n[COPY-QA-A1]");
     expect(transcript.trimEnd().endsWith("[COPY-QA-END-A5]")).toBe(true);
   });
 

@@ -8,7 +8,7 @@ describe("copy core", () => {
     expect(formatConversation({ platform: "chatgpt", messages: [
       { role: "user", text: "Hello" },
       { role: "assistant", text: "```js\n42\n```" }
-    ] })).toBe("User:\nHello\n\n---\n\nChatGPT:\n```js\n42\n```");
+    ] })).toBe("User:\nHello\n\n────────────────────\n\nChatGPT:\n```js\n42\n```");
   });
 
   it("formats structured attachments and references", () => {
@@ -62,5 +62,29 @@ describe("copy core", () => {
       navigator: { clipboard: { writeText: vi.fn() } }
     });
     expect(result).toMatchObject({ ok: false, code: "empty_conversation" });
+  });
+});
+
+describe("message separators", () => {
+  it("does not use a rule that conversation text can produce", () => {
+    const formatted = formatConversation({ platform: "doubao", messages: [
+      { role: "user", text: "Q1" },
+      { role: "assistant", text: "A1" }
+    ] });
+    // A bare --- is Markdown syntax that replies commonly emit; the separator
+    // must be distinguishable from prose.
+    expect(formatted).not.toContain("\n\n---\n\n");
+    expect(formatted.split("\n\n").some((line) => /^[─—=]{4,}$/.test(line))).toBe(true);
+  });
+
+  it("keeps a horizontal rule inside a reply from looking like a boundary", () => {
+    const formatted = formatConversation({ platform: "doubao", messages: [
+      { role: "user", text: "Intro\n\n---\n\nMore prose" },
+      { role: "assistant", text: "Reply" }
+    ] });
+    // Exactly one separator: between the two messages.
+    const boundaries = formatted.match(/────────────────────/g) || [];
+    expect(boundaries).toHaveLength(1);
+    expect(formatted).toContain("Intro\n\n---\n\nMore prose");
   });
 });

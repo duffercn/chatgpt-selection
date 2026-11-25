@@ -1,0 +1,385 @@
+{
+  "cmd": 3100,
+  "sequence_id": "00000000-0000-4000-8000-000000000000",
+  "downlink_body": {
+    "pull_singe_chain_downlink_body": {
+      "messages": [
+        {
+          "conversation_id": "70000000000000001",
+          "message_id": "700000000000000011",
+          "message_body_version": "1",
+          "sender_id": "1",
+          "user_type": 2,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "17",
+          "create_time": "0",
+          "sec_sender": "",
+          "bot_reply_message_id": "700000000000000012",
+          "regen_msg_list": [],
+          "section_id": "70000000000000001section",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "7000000000000000110",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "ASSISTANT_MARK_1ASSISTANT_MARK_1ASSISTANT_MARK_1",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            },
+            {
+              "block_type": 10025,
+              "block_id": "7000000000000000111",
+              "parent_id": "0",
+              "content": {
+                "search_query_result_block": {
+                  "summary": "search summary",
+                  "queries": [
+                    "q1"
+                  ],
+                  "results": [
+                    {
+                      "text_card": {
+                        "id": "card1",
+                        "summary": "",
+                        "title": "Example result",
+                        "sitename": "example",
+                        "url": "https://example.invalid/a",
+                        "logo_url": "",
+                        "doc_id": "d1",
+                        "image_url": "",
+                        "has_image": false,
+                        "publish_time_second": "2025-01-01T00:00:00+08:00"
+                      }
+                    }
+                  ],
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "vlm_rich_media_results": [],
+                  "scene": "",
+                  "search_type": "",
+                  "extend_fields": {}
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ]
+        },
+        {
+          "conversation_id": "70000000000000001",
+          "message_id": "700000000000000012",
+          "message_body_version": "1",
+          "sender_id": "1",
+          "user_type": 1,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "16",
+          "create_time": "0",
+          "sec_sender": "",
+          "bot_reply_message_id": "0",
+          "regen_msg_list": [],
+          "section_id": "70000000000000001section",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "7000000000000000120",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "USER_MARK_2USER_MARK_2USER_MARK_2",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ]
+        },
+        {
+          "conversation_id": "70000000000000001",
+          "message_id": "700000000000000013",
+          "message_body_version": "1",
+          "sender_id": "1",
+          "user_type": 2,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "12",
+          "create_time": "0",
+          "sec_sender": "",
+          "bot_reply_message_id": "700000000000000014",
+          "regen_msg_list": [],
+          "section_id": "70000000000000001section",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "7000000000000000130",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "ASSISTANT_MARK_3ASSISTANT_MARK_3ASSISTANT_MARK_3",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ]
+        },
+        {
+          "conversation_id": "70000000000000001",
+          "message_id": "700000000000000014",
+          "message_body_version": "1",
+          "sender_id": "1",
+          "user_type": 1,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "11",
+          "create_time": "0",
+          "sec_sender": "",
+          "bot_reply_message_id": "0",
+          "regen_msg_list": [],
+          "section_id": "70000000000000001section",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "7000000000000000140",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "USER_MARK_4USER_MARK_4USER_MARK_4",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ]
+        },
+        {
+          "conversation_id": "70000000000000001",
+          "message_id": "700000000000000015",
+          "message_body_version": "1",
+          "sender_id": "1",
+          "user_type": 2,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "7",
+          "create_time": "0",
+          "sec_sender": "",
+          "bot_reply_message_id": "700000000000000016",
+          "regen_msg_list": [],
+          "section_id": "70000000000000001section",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "7000000000000000150",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "ASSISTANT_MARK_5ASSISTANT_MARK_5ASSISTANT_MARK_5",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ]
+        },
+        {
+          "conversation_id": "70000000000000001",
+          "message_id": "700000000000000016",
+          "message_body_version": "1",
+          "sender_id": "1",
+          "user_type": 1,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "6",
+          "create_time": "0",
+          "sec_sender": "",
+          "bot_reply_message_id": "0",
+          "regen_msg_list": [],
+          "section_id": "70000000000000001section",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "7000000000000000160",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "USER_MARK_6USER_MARK_6USER_MARK_6",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ]
+        },
+        {
+          "conversation_id": "70000000000000001",
+          "message_id": "700000000000000017",
+          "message_body_version": "1",
+          "sender_id": "1",
+          "user_type": 2,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "2",
+          "create_time": "0",
+          "sec_sender": "",
+          "bot_reply_message_id": "700000000000000018",
+          "regen_msg_list": [],
+          "section_id": "70000000000000001section",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "7000000000000000170",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "ASSISTANT_MARK_7ASSISTANT_MARK_7ASSISTANT_MARK_7",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ]
+        },
+        {
+          "conversation_id": "70000000000000001",
+          "message_id": "700000000000000018",
+          "message_body_version": "1",
+          "sender_id": "1",
+          "user_type": 1,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "1",
+          "create_time": "0",
+          "sec_sender": "",
+          "bot_reply_message_id": "0",
+          "regen_msg_list": [],
+          "section_id": "70000000000000001section",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "7000000000000000180",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "USER_MARK_8USER_MARK_8USER_MARK_8",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ]
+        }
+      ],
+      "has_more": false,
+      "regen_messages": {},
+      "msg_cursor": "1"
+    }
+  },
+  "version": 1,
+  "status_code": 0,
+  "status_desc": "OK",
+  "ext": {}
+}

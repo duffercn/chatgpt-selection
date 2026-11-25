@@ -3,23 +3,28 @@ import { describe, expect, it } from "vitest";
 import { parseChatGptConversation } from "../src/platforms/chatgpt.js";
 import { parseClaudeConversation } from "../src/platforms/claude.js";
 import { parseGrokConversation, parseMaybeNdjson } from "../src/platforms/grok.js";
-import { adapterForUrl } from "../src/platforms/registry.js";
+import { adapters, adapterForUrl } from "../src/platforms/registry.js";
 
 const fixture = (name) => JSON.parse(readFileSync(new URL(`fixtures/${name}.json`, import.meta.url), "utf8"));
 
 describe("platform adapters", () => {
-  it("routes supported URLs", () => {
+  it("routes the five shipping platforms", () => {
     expect(adapterForUrl("https://chatgpt.com/c/123")?.id).toBe("chatgpt");
+    expect(adapterForUrl("https://chat.openai.com/c/123")?.id).toBe("chatgpt");
     expect(adapterForUrl("https://claude.ai/chat/123")?.id).toBe("claude");
     expect(adapterForUrl("https://grok.com/c/123")?.id).toBe("grok");
     expect(adapterForUrl("https://chat.deepseek.com/a/chat/s/11111111-2222-4333-8444-555555555555")?.id).toBe("deepseek");
-    expect(adapterForUrl("https://www.perplexity.ai/session/11111111-2222-4333-8444-555555555555")?.id).toBe("perplexity");
-    expect(adapterForUrl("https://qianwen.com/chat/11111111222243338444555555555555")?.id).toBe("qianwen");
-    expect(adapterForUrl("https://kimi.com/chat/123")?.id).toBe("kimi");
-    expect(adapterForUrl("https://chat.qwen.ai/c/123")?.id).toBe("qwen");
     expect(adapterForUrl("https://www.doubao.com/chat/123")?.id).toBe("doubao");
-    expect(adapterForUrl("https://gemini.google.com/app/0123456789abcdef")?.id).toBe("gemini");
     expect(adapterForUrl("https://example.com")).toBeNull();
+  });
+
+  it("no longer routes the paused platforms", () => {
+    // These adapters stay in the repo for future reference but must not ship.
+    expect(adapterForUrl("https://www.perplexity.ai/session/11111111-2222-4333-8444-555555555555")).toBeNull();
+    expect(adapterForUrl("https://qianwen.com/chat/11111111222243338444555555555555")).toBeNull();
+    expect(adapterForUrl("https://kimi.com/chat/123")).toBeNull();
+    expect(adapterForUrl("https://chat.qwen.ai/c/123")).toBeNull();
+    expect(adapterForUrl("https://gemini.google.com/app/0123456789abcdef")).toBeNull();
   });
 
   it("selects only ChatGPT current_node ancestry and preserves an image placeholder", () => {
@@ -77,5 +82,29 @@ describe("platform adapters", () => {
     const data = fixture("chatgpt");
     delete data.current_node;
     expect(() => parseChatGptConversation(data)).toThrow(/active conversation branch/i);
+  });
+});
+
+describe("shipping scope", () => {
+  it("registers exactly the five accepted platforms", () => {
+    expect(adapters.map((adapter) => adapter.id).sort()).toEqual([
+      "chatgpt", "claude", "deepseek", "doubao", "grok"
+    ]);
+  });
+
+  it("declares host permissions and content-script matches for only those hosts", () => {
+    const manifest = JSON.parse(readFileSync(new URL("../manifest.json", import.meta.url), "utf8"));
+    const expected = [
+      "https://chatgpt.com/*", "https://chat.openai.com/*", "https://claude.ai/*",
+      "https://grok.com/*", "https://chat.deepseek.com/*",
+      "https://doubao.com/*", "https://www.doubao.com/*"
+    ];
+    expect(manifest.host_permissions.sort()).toEqual([...expected].sort());
+    expect(manifest.content_scripts[0].matches.sort()).toEqual([...expected].sort());
+    expect(manifest.version).toBe("0.6.0");
+    // No host may remain for a paused platform.
+    for (const host of ["perplexity", "qianwen", "kimi", "qwen", "gemini"]) {
+      expect(manifest.host_permissions.some((entry) => entry.includes(host))).toBe(false);
+    }
   });
 });

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "ChatCopy — Copy AI Conversations",
-  "description": "Copy the current conversation from supported AI chat sites.",
-  "version": "0.5.5",
+  "description": "Copy the current conversation from ChatGPT, Claude, Grok, DeepSeek and Doubao.",
+  "version": "0.6.0",
   "permissions": [
     "activeTab",
     "clipboardWrite",
@@ -15,17 +15,8 @@
     "https://claude.ai/*",
     "https://grok.com/*",
     "https://chat.deepseek.com/*",
-    "https://www.perplexity.ai/*",
-    "https://perplexity.ai/*",
-    "https://qianwen.com/*",
-    "https://chat2-api.qianwen.com/*",
-    "https://www.qianwen.com/*",
-    "https://kimi.com/*",
-    "https://www.kimi.com/*",
-    "https://chat.qwen.ai/*",
     "https://doubao.com/*",
-    "https://www.doubao.com/*",
-    "https://gemini.google.com/*"
+    "https://www.doubao.com/*"
   ],
   "action": {
     "default_title": "Copy current conversation",
@@ -54,16 +45,8 @@
         "https://claude.ai/*",
         "https://grok.com/*",
         "https://chat.deepseek.com/*",
-        "https://www.perplexity.ai/*",
-        "https://perplexity.ai/*",
-        "https://qianwen.com/*",
-        "https://www.qianwen.com/*",
-        "https://kimi.com/*",
-        "https://www.kimi.com/*",
-        "https://chat.qwen.ai/*",
         "https://doubao.com/*",
-        "https://www.doubao.com/*",
-        "https://gemini.google.com/*"
+        "https://www.doubao.com/*"
       ],
       "js": [
         "content.js"

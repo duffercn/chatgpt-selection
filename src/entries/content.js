@@ -2,6 +2,8 @@ import { COPY_MESSAGE, WRITE_CLIPBOARD_MESSAGE, copyCurrentConversation } from "
 import { CopyError, ErrorCode } from "../core/errors.js";
 import { adapterForUrl } from "../platforms/registry.js";
 
+import { positionButton } from "../core/placement.js";
+
 const VERSION = "0.6.0";
 const BUTTON_ID = "cgca-copy-current-conversation";
 const DEFAULT_LABEL = "Copy chat";
@@ -9,14 +11,30 @@ const DEFAULT_LABEL = "Copy chat";
 if (window.__chatCopyAllLoaded !== VERSION) {
   window.__chatCopyAllLoaded = VERSION;
 
+  let placementFrame = 0;
+  function schedulePlacement() {
+    if (placementFrame) return;
+    placementFrame = requestAnimationFrame(() => {
+      placementFrame = 0;
+      const button = document.getElementById(BUTTON_ID);
+      if (button) positionButton(button);
+    });
+  }
+  const resizeObserver = new ResizeObserver(schedulePlacement);
+  resizeObserver.observe(document.documentElement);
+  window.addEventListener("resize", schedulePlacement);
+  window.addEventListener("scroll", schedulePlacement, true);
+
   function setButtonState(label, state = "", resetAfter = 1800) {
     const button = document.getElementById(BUTTON_ID);
     if (!button) return;
     button.textContent = label;
     button.dataset.state = state;
+    schedulePlacement();
     if (resetAfter) window.setTimeout(() => {
       button.textContent = DEFAULT_LABEL;
       button.dataset.state = "";
+      schedulePlacement();
     }, resetAfter);
   }
 
@@ -55,6 +73,8 @@ if (window.__chatCopyAllLoaded !== VERSION) {
     button.title = "Copy the current conversation";
     button.addEventListener("click", () => runCopy());
     document.documentElement.appendChild(button);
+    resizeObserver.observe(button);
+    schedulePlacement();
   }
 
   chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
@@ -78,5 +98,5 @@ if (window.__chatCopyAllLoaded !== VERSION) {
   });
 
   addButton();
-  new MutationObserver(addButton).observe(document.documentElement, { childList: true, subtree: true });
+  new MutationObserver(() => { addButton(); schedulePlacement(); }).observe(document.documentElement, { childList: true, subtree: true });
 }

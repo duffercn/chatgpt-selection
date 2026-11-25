@@ -1,41 +1,40 @@
 .cgca-copy-button {
   position: fixed;
-  right: 18px;
-  bottom: 18px;
+  right: 16px;
+  top: 50%;
   z-index: 2147483647;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  min-height: 40px;
-  padding: 0 14px;
-  border: 1px solid rgba(0, 0, 0, 0.14);
-  border-radius: 8px;
-  background: #111827;
-  color: #fff;
-  font: 13px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+  gap: 7px;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 999px;
+  background: #fff;
+  color: #374151;
+  font: 500 12px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   cursor: pointer;
   user-select: none;
+  visibility: hidden;
 }
-
-.cgca-copy-button:hover {
-  background: #0b1220;
+.cgca-copy-button::before {
+  content: "";
+  width: 13px;
+  height: 13px;
+  flex: none;
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.5'%3E%3Crect x='5' y='5' width='9' height='9' rx='2'/%3E%3Cpath d='M3 10H2V4a2 2 0 0 1 2-2h6v1'/%3E%3C/svg%3E") center / contain no-repeat;
 }
-
-.cgca-copy-button:active {
-  transform: translateY(1px);
-}
-
-.cgca-copy-button[data-state="ok"] {
-  background: #047857;
-}
-
-.cgca-copy-button[data-state="error"] {
-  background: #b91c1c;
-}
-
-.cgca-copy-button[data-state="busy"] {
-  background: #334155;
-  cursor: progress;
+.cgca-copy-button:hover { background: #f3f4f6; color: #111827; }
+.cgca-copy-button:focus-visible { outline: 2px solid #2563eb; outline-offset: 3px; }
+.cgca-copy-button[data-state="ok"] { color: #047857; }
+.cgca-copy-button[data-state="error"] { color: #b91c1c; }
+.cgca-copy-button[data-state="busy"] { cursor: progress; }
+@media (prefers-color-scheme: dark) {
+  .cgca-copy-button { background: #25272b; color: #e5e7eb; border-color: #52525b; }
+  .cgca-copy-button:hover { background: #35373b; color: #fff; }
+  .cgca-copy-button[data-state="ok"] { color: #6ee7b7; }
+  .cgca-copy-button[data-state="error"] { color: #fca5a5; }
 }

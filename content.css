@@ -1,40 +1,77 @@
 .cgca-copy-button {
+  --cgca-surface: #fcfdfd;
+  --cgca-ink: #253047;
+  --cgca-border: #dce1e8;
+  --cgca-hover: #f2f7f6;
+  --cgca-shadow: 0 1px 2px #0e20330d, 0 4px 14px -3px #10233d26;
+  --cgca-icon-bg: #101c38;
+  --cgca-icon-ink: #39e5bd;
+  box-sizing: border-box;
   position: fixed;
   right: 16px;
   top: 50%;
   z-index: 2147483647;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 7px;
-  min-height: 36px;
-  padding: 0 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 999px;
-  background: #fff;
-  color: #374151;
-  font: 500 12px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  justify-content: flex-start;
+  gap: 8px;
+  min-height: 40px;
+  padding: 5px 12px 5px 5px;
+  border: 1px solid var(--cgca-border);
+  border-radius: 12px;
+  background: var(--cgca-surface);
+  color: var(--cgca-ink);
+  font: 600 12px/1.25 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+  box-shadow: var(--cgca-shadow);
   cursor: pointer;
   user-select: none;
   visibility: hidden;
+  transition: background-color 150ms ease, border-color 150ms ease,
+    box-shadow 150ms ease, transform 150ms ease;
 }
 .cgca-copy-button::before {
   content: "";
-  width: 13px;
-  height: 13px;
-  flex: none;
-  background: currentColor;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.5'%3E%3Crect x='5' y='5' width='9' height='9' rx='2'/%3E%3Cpath d='M3 10H2V4a2 2 0 0 1 2-2h6v1'/%3E%3C/svg%3E") center / contain no-repeat;
+  box-sizing: border-box;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  border-radius: 8px;
+  background: var(--cgca-icon-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M5 15.5 3.5 18v-9a4 4 0 0 1 4-4h7a4 4 0 0 1 4 4v1' stroke='%23fff' stroke-width='1.65' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M9 9.5h9a3.5 3.5 0 0 1 3.5 3.5v3a3.5 3.5 0 0 1-3.5 3.5h-1.5v2l-3-2H9A3.5 3.5 0 0 1 5.5 16v-3A3.5 3.5 0 0 1 9 9.5Z' fill='%2339e5bd'/%3E%3C/svg%3E") center / 19px 19px no-repeat;
+  box-shadow: inset 0 1px 0 #ffffff1a;
 }
-.cgca-copy-button:hover { background: #f3f4f6; color: #111827; }
-.cgca-copy-button:focus-visible { outline: 2px solid #2563eb; outline-offset: 3px; }
-.cgca-copy-button[data-state="ok"] { color: #047857; }
-.cgca-copy-button[data-state="error"] { color: #b91c1c; }
+.cgca-copy-button:hover {
+  background: var(--cgca-hover);
+  border-color: #a0c4ba;
+  box-shadow: 0 2px 4px #0e20330d, 0 6px 18px -4px #10233d30;
+  transform: translateY(-1px);
+}
+.cgca-copy-button:active { transform: translateY(0) scale(.98); }
+.cgca-copy-button:focus-visible { outline: 2px solid #159b83; outline-offset: 3px; }
+.cgca-copy-button[data-state="ok"] { --cgca-ink: #08765d; --cgca-icon-bg: #08765d; }
+.cgca-copy-button[data-state="ok"]::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E");
+}
+.cgca-copy-button[data-state="error"] { --cgca-ink: #a42b3c; --cgca-icon-bg: #a42b3c; }
+.cgca-copy-button[data-state="error"]::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M12 6v7m0 4v.2'/%3E%3C/svg%3E");
+}
 .cgca-copy-button[data-state="busy"] { cursor: progress; }
+.cgca-copy-button[data-state="busy"]::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2339e5bd' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 5h10M7 19h10M8 5v3l4 4-4 4v3m8-14v3l-4 4 4 4v3'/%3E%3C/svg%3E");
+}
 @media (prefers-color-scheme: dark) {
-  .cgca-copy-button { background: #25272b; color: #e5e7eb; border-color: #52525b; }
-  .cgca-copy-button:hover { background: #35373b; color: #fff; }
-  .cgca-copy-button[data-state="ok"] { color: #6ee7b7; }
-  .cgca-copy-button[data-state="error"] { color: #fca5a5; }
+  .cgca-copy-button {
+    --cgca-surface: #252a35;
+    --cgca-ink: #f1f5f9;
+    --cgca-border: #414a59;
+    --cgca-hover: #303c42;
+    --cgca-shadow: 0 1px 2px #0004, 0 4px 14px -3px #0006;
+  }
+  .cgca-copy-button[data-state="ok"] { --cgca-ink: #7ce9c8; }
+  .cgca-copy-button[data-state="error"] { --cgca-ink: #fec0c8; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cgca-copy-button { transition: none; }
 }

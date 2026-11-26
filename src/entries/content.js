@@ -4,7 +4,7 @@ import { adapterForUrl } from "../platforms/registry.js";
 
 import { positionButton } from "../core/placement.js";
 
-const VERSION = "0.7.0";
+const VERSION = "0.7.1";
 const BUTTON_ID = "cgca-copy-current-conversation";
 const DEFAULT_LABEL = "Copy chat";
 

@@ -1,4 +1,4 @@
-// Shipping adapters for 0.7.0.
+// Shipping adapters for 0.7.1.
 //
 // Scope was deliberately narrowed to these six platforms (Gemini re-added 2026-11-26) so each one can be
 // verified end to end. The adapters for Perplexity, Qianwen, Kimi and Qwen

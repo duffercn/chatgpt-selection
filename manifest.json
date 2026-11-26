@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "ChatCopy — Copy AI Conversations",
-  "description": "Copy the current conversation from ChatGPT, Claude, Gemini, Grok, DeepSeek and Doubao.",
-  "version": "0.7.0",
+  "description": "Copy the current conversation from supported AI chat sites.",
+  "version": "0.7.1",
   "permissions": [
     "activeTab",
     "clipboardWrite",

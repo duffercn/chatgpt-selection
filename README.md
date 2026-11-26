@@ -2,7 +2,7 @@
 
 A local-first Chrome extension that copies the complete current conversation from supported AI chat sites as plain text with roles and Markdown intact.
 
-## Supported sites in 0.7.0
+## Supported sites in 0.7.1
 
 | Site | URL pattern |
 | --- | --- |
@@ -13,7 +13,7 @@ A local-first Chrome extension that copies the complete current conversation fro
 | DeepSeek | `chat.deepseek.com/a/chat/s/{id}` |
 | Doubao China | `doubao.com/chat/{id}`, `www.doubao.com/chat/{id}` |
 
-The repository still contains adapters for Perplexity, Qianwen, Kimi and Qwen, together with their tests, but they are not registered and their hosts are not in the manifest. They do not ship in 0.7.0; re-enabling one means importing it in `src/platforms/registry.js` and restoring its host patterns in `manifest.json`.
+The repository still contains adapters for Perplexity, Qianwen, Kimi and Qwen, together with their tests, but they are not registered and their hosts are not in the manifest. They do not ship in 0.7.1; re-enabling one means importing it in `src/platforms/registry.js` and restoring its host patterns in `manifest.json`.
 
 ## How it works
 
@@ -104,7 +104,7 @@ Source lives in `src/`. `src/core/` holds copy orchestration, formatting and the
 
 ## Load the extension
 
-Load the generated `dist/` directory from `chrome://extensions` with Developer mode enabled. Reload affected website tabs after reloading the unpacked extension. `npm run package` builds and zips `dist/` into `release/chat-copy-all-0.7.0.zip`.
+Load the generated `dist/` directory from `chrome://extensions` with Developer mode enabled. Reload affected website tabs after reloading the unpacked extension. `npm run package` builds and zips `dist/` into `release/chat-copy-all-0.7.1.zip`.
 
 ## Branding
 

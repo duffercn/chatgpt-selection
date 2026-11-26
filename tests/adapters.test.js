@@ -101,7 +101,7 @@ describe("shipping scope", () => {
     ];
     expect(manifest.host_permissions.sort()).toEqual([...expected].sort());
     expect(manifest.content_scripts[0].matches.sort()).toEqual([...expected].sort());
-    expect(manifest.version).toBe("0.7.0");
+    expect(manifest.version).toBe("0.7.1");
     // No host may remain for a paused platform.
     for (const host of ["perplexity", "qianwen", "kimi", "qwen"]) {
       expect(manifest.host_permissions.some((entry) => entry.includes(host))).toBe(false);

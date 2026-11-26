@@ -16,7 +16,7 @@ describe("DeepSeek adapter", () => {
 
   it("rebuilds only the current branch, preserves ids, and converts visible fragments", () => {
     expect(parseDeepSeekConversation(fixture()).messages).toEqual([
-      { id: "u1", role: "user", text: "Hello\n\n[Attachment: notes.pdf]" },
+      { id: "u1", role: "user", text: "Hello\n\n[File: notes.pdf]" },
       {
         id: "a2",
         role: "assistant",

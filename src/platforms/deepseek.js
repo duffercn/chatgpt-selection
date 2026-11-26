@@ -1,5 +1,6 @@
 import { attachmentPlaceholder, cleanText } from "../core/content.js";
 import { CopyError, ErrorCode, responseError } from "../core/errors.js";
+import { citationMarkers, fragmentText, searchReferences } from "./deepseek-rich.js";
 import { strictCurrentPath, uniqueMessages } from "./shared.js";
 
 const CONVERSATION_PATH = /^\/a\/chat\/s\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\/?$/i;
@@ -24,37 +25,29 @@ function tokenFromStorage(storage) {
   return "";
 }
 
-function fragmentType(fragment) {
-  return String(fragment?.type || fragment?.fragment_type || "").toUpperCase();
-}
-
-function fragmentText(fragment) {
-  if (typeof fragment === "string") return fragment;
-  if (!fragment || typeof fragment !== "object") return "";
-  const type = fragmentType(fragment);
-  if (["THINKING", "THOUGHT", "REASONING"].includes(type)) return "";
-  const content = typeof fragment.content === "string" ? fragment.content
-    : typeof fragment.text === "string" ? fragment.text
-      : typeof fragment.value === "string" ? fragment.value
-        : "";
-  if (["TEXT", "REQUEST", "RESPONSE", "MARKDOWN"].includes(type)) return content;
-  if (type === "CODE") {
-    const language = fragment.language || fragment.lang || "";
-    return content ? `\`\`\`${language}\n${content}\n\`\`\`` : "";
-  }
-  if (["FILE", "ATTACHMENT", "IMAGE"].includes(type)) return attachmentPlaceholder(fragment);
-  return type ? `[DeepSeek content: ${type}]` : "[DeepSeek content: unknown]";
-}
-
 function messageText(message) {
   const fragments = message?.fragments;
+  const list = Array.isArray(fragments) ? fragments : [];
+  // Citation markers resolve against the search results of the same message, so
+  // the map is built once before the fragments are rendered in order.
+  const markers = citationMarkers(list);
   const body = Array.isArray(fragments)
-    ? fragments.map(fragmentText).filter(Boolean).join("\n\n")
+    ? list.map((fragment) => fragmentText(fragment, markers)).filter(Boolean).join("\n\n")
     : typeof message?.content === "string" ? message.content : "";
   const attachments = [...(message?.attachments || []), ...(message?.files || [])]
     .map(attachmentPlaceholder);
   return cleanText([body, ...attachments].filter(Boolean).join("\n\n"));
 }
+
+function messageReferences(message) {
+  const fragments = Array.isArray(message?.fragments) ? message.fragments : [];
+  // Only search results carry verified `{title, url}` pairs; the `references`
+  // field on THINK/RESPONSE fragments is reasoning metadata, not sources.
+  return searchReferences(fragments);
+}
+
+/** Assistant turns whose only fragments are hidden still happened to the user. */
+const REASONING_WITHOUT_REPLY = "[Reasoning only; no reply text]";
 
 export function parseDeepSeekConversation(data, fallbackConversationId = "") {
   const payload = data?.data?.biz_data;
@@ -71,7 +64,18 @@ export function parseDeepSeekConversation(data, fallbackConversationId = "") {
     const role = ["user", "human"].includes(rawRole) ? "user"
       : ["assistant", "bot"].includes(rawRole) ? "assistant" : "";
     const text = messageText(message);
-    return role && text ? { id: message.message_id, role, text } : null;
+    if (!role) return null;
+    // A finished assistant turn that only contains reasoning (`THINK`) has no
+    // visible body, yet the user still saw it happen. Keeping an explicit note
+    // preserves the turn instead of silently merging its neighbours.
+    const body = text || (role === "assistant" && Array.isArray(message?.fragments) ? REASONING_WITHOUT_REPLY : "");
+    if (!body) return null;
+    const references = messageReferences(message);
+    const base = { id: message.message_id, role, text: body };
+    // Whether the message is on the current branch is already settled by
+    // `strictCurrentPath`; the path order is the conversation order, so the id
+    // is stable for a given branch and uniqueMessages still sees distinct ids.
+    return references.length ? { ...base, references } : base;
   }).filter(Boolean));
   return {
     platform: "deepseek",

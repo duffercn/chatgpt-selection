@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "ChatCopy — Copy AI Conversations",
-  "description": "Copy the current conversation from ChatGPT, Claude, Grok, DeepSeek and Doubao.",
-  "version": "0.6.0",
+  "description": "Copy the current conversation from ChatGPT, Claude, Gemini, Grok, DeepSeek and Doubao.",
+  "version": "0.7.0",
   "permissions": [
     "activeTab",
     "clipboardWrite",
@@ -13,6 +13,7 @@
     "https://chatgpt.com/*",
     "https://chat.openai.com/*",
     "https://claude.ai/*",
+    "https://gemini.google.com/*",
     "https://grok.com/*",
     "https://chat.deepseek.com/*",
     "https://doubao.com/*",
@@ -43,6 +44,7 @@
         "https://chatgpt.com/*",
         "https://chat.openai.com/*",
         "https://claude.ai/*",
+        "https://gemini.google.com/*",
         "https://grok.com/*",
         "https://chat.deepseek.com/*",
         "https://doubao.com/*",

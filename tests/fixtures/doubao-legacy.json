@@ -1,0 +1,100 @@
+{
+  "cmd": 3100,
+  "status_code": 0,
+  "sequence_id": "1",
+  "downlink_body": {
+    "pull_singe_chain_downlink_body": {
+      "has_more": false,
+      "msg_cursor": "1",
+      "regen_messages": {},
+      "messages": [
+        {
+          "conversation_id": "90000000000000001",
+          "message_id": "910000000000000011",
+          "message_body_version": "1",
+          "sender_id": "1",
+          "user_type": 1,
+          "status": 0,
+          "content_type": 1,
+          "content": "{\"text\": \"LEGACY_USER_ONE 请问？\"}",
+          "content_status": 0,
+          "index_in_conv": "1",
+          "create_time": "0",
+          "sec_sender": "",
+          "bot_reply_message_id": "0",
+          "regen_msg_list": [],
+          "section_id": "90000000000000001section",
+          "ext": {
+            "is_finish": "1"
+          },
+          "content_block": []
+        },
+        {
+          "conversation_id": "90000000000000001",
+          "message_id": "910000000000000012",
+          "message_body_version": "1",
+          "sender_id": "1",
+          "user_type": 2,
+          "status": 0,
+          "content_type": 1,
+          "content": "{\"text\": \"LEGACY_REPLY_ONE 开头。第二句引用来源。收尾。\", \"search_references\": [{\"text_card\": {\"title\": \"Legacy Card A\", \"url\": \"https://example.invalid/legacy-a?f_link_type=1&flow_extra=zz\", \"summary\": \"s\", \"sitename\": \"Example Site\", \"logo_url\": \"https://p-sign.invalid/logo\", \"doc_id\": \"synthetic-doc-a\"}}, {\"text_card\": {\"title\": \"Legacy Card B\", \"url\": \"https://example.invalid/legacy-b\", \"summary\": \"s\", \"sitename\": \"Example Two\", \"logo_url\": \"\", \"doc_id\": \"synthetic-doc-b\"}}]}",
+          "content_status": 0,
+          "index_in_conv": "2",
+          "create_time": "0",
+          "sec_sender": "",
+          "bot_reply_message_id": "910000000000000011",
+          "regen_msg_list": [],
+          "section_id": "90000000000000001section",
+          "ext": {
+            "is_finish": "1",
+            "meta_info": "[{\"type\": -4, \"info\": \"{\\\"insert_text\\\": \\\"1\\\", \\\"url\\\": \\\"https://example.invalid/legacy-a?f_link_type=1&flow_extra=zz\\\", \\\"icon\\\": \\\"https://p-sign.invalid/icon\\\", \\\"website_name\\\": \\\"Example Site\\\", \\\"title\\\": \\\"Legacy Source A\\\", \\\"pos\\\": [20], \\\"type\\\": 4, \\\"summary\\\": \\\"ignored summary\\\", \\\"pos_rune\\\": [20], \\\"doc_id\\\": \\\"synthetic-doc-a\\\"}\"}]"
+          },
+          "content_block": []
+        },
+        {
+          "conversation_id": "90000000000000001",
+          "message_id": "920000000000000021",
+          "message_body_version": "1",
+          "sender_id": "1",
+          "user_type": 1,
+          "status": 0,
+          "content_type": 1,
+          "content": "{\"text\": \"LEGACY_USER_TWO 继续？\"}",
+          "content_status": 120,
+          "index_in_conv": "3",
+          "create_time": "0",
+          "sec_sender": "",
+          "bot_reply_message_id": "0",
+          "regen_msg_list": [],
+          "section_id": "90000000000000001section",
+          "ext": {
+            "is_finish": "1"
+          },
+          "content_block": []
+        },
+        {
+          "conversation_id": "90000000000000001",
+          "message_id": "920000000000000022",
+          "message_body_version": "1",
+          "sender_id": "1",
+          "user_type": 2,
+          "status": 0,
+          "content_type": 1,
+          "content": "{\"text\": \"LEGACY_REPLY_TWO 没有位置。\"}",
+          "content_status": 0,
+          "index_in_conv": "4",
+          "create_time": "0",
+          "sec_sender": "",
+          "bot_reply_message_id": "920000000000000021",
+          "regen_msg_list": [],
+          "section_id": "90000000000000001section",
+          "ext": {
+            "is_finish": "1",
+            "meta_info": "[{\"type\": 2, \"info\": \"{\\\"insert_text\\\": \\\"1\\\", \\\"url\\\": \\\"https://example.invalid/legacy-c?flow_extra=zz\\\", \\\"website_name\\\": \\\"Example Three\\\", \\\"pos\\\": []}\"}]"
+          },
+          "content_block": []
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,347 @@
+{
+  "cmd": 3100,
+  "status_code": 0,
+  "sequence_id": "1",
+  "downlink_body": {
+    "pull_singe_chain_downlink_body": {
+      "has_more": false,
+      "msg_cursor": "1",
+      "regen_messages": {},
+      "messages": [
+        {
+          "conversation_id": "90000000000000001",
+          "message_id": "930000000000000031",
+          "message_body_version": "1",
+          "sender_id": "1",
+          "user_type": 1,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "1",
+          "create_time": "0",
+          "sec_sender": "",
+          "bot_reply_message_id": "0",
+          "regen_msg_list": [],
+          "section_id": "90000000000000001section",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "b",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "BLOCK_USER_ONE 请给我一份总结。",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ]
+        },
+        {
+          "conversation_id": "90000000000000001",
+          "message_id": "930000000000000032",
+          "message_body_version": "1",
+          "sender_id": "1",
+          "user_type": 2,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 120,
+          "index_in_conv": "2",
+          "create_time": "0",
+          "sec_sender": "",
+          "bot_reply_message_id": "930000000000000031",
+          "regen_msg_list": [],
+          "section_id": "90000000000000001section",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "p1",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "BLOCK_PROSE_ONE 第一段。",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [
+                {
+                  "type": 2,
+                  "tag_info": "",
+                  "info": "{\"insert_text\": \"1\", \"pos\": [16], \"url\": \"https://example.invalid/block-a\", \"website_name\": \"Block Site\"}"
+                }
+              ],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            },
+            {
+              "block_type": 10030,
+              "block_id": "d1",
+              "parent_id": "0",
+              "content": {
+                "artifact_block": {
+                  "resource_id": "RESOURCE_ID_PLACEHOLDER",
+                  "artifact_meta_id": "10000000000000001",
+                  "artifact_version_id": "10000000000000002",
+                  "conversation_id": "90000000000000001",
+                  "version": "0",
+                  "resource_version": "-1",
+                  "artifact_topic": "synthetic-topic",
+                  "title": "SYNTHETIC_DOC_TITLE",
+                  "brief": "SYNTHETIC_DOC_BRIEF SYNTHETIC_DOC_BRIEF SYNTHETIC_DOC_BRIEF ",
+                  "source_type": 1,
+                  "resource_type": 10,
+                  "status": 2,
+                  "resource_content_type": "type/ddxml"
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            },
+            {
+              "block_type": 10000,
+              "block_id": "p2",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "BLOCK_PROSE_TWO 第二段。",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            },
+            {
+              "block_type": 10025,
+              "block_id": "s1",
+              "parent_id": "0",
+              "content": {
+                "search_query_result_block": {
+                  "summary": "",
+                  "queries": [
+                    "BLOCK QUERY"
+                  ],
+                  "results": [
+                    {
+                      "text_card": {
+                        "title": "Block Site",
+                        "url": "https://example.invalid/block-a",
+                        "summary": "s",
+                        "sitename": "Block Site",
+                        "logo_url": "",
+                        "doc_id": "d"
+                      }
+                    }
+                  ],
+                  "scene": 2
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ]
+        },
+        {
+          "conversation_id": "90000000000000001",
+          "message_id": "940000000000000041",
+          "message_body_version": "1",
+          "sender_id": "1",
+          "user_type": 1,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "3",
+          "create_time": "0",
+          "sec_sender": "",
+          "bot_reply_message_id": "0",
+          "regen_msg_list": [],
+          "section_id": "90000000000000001section",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "content_block": [
+            {
+              "block_type": 10056,
+              "block_id": "r",
+              "parent_id": "0",
+              "content": {
+                "reference_block": {
+                  "type": 6,
+                  "text": {
+                    "text": "QUOTED_LINE_ONE\nQUOTED_LINE_TWO",
+                    "message_id": "",
+                    "sub_index": 0
+                  }
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            },
+            {
+              "block_type": 10000,
+              "block_id": "b",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "BLOCK_USER_TWO 继续。",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ]
+        },
+        {
+          "conversation_id": "90000000000000001",
+          "message_id": "940000000000000042",
+          "message_body_version": "1",
+          "sender_id": "1",
+          "user_type": 2,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "4",
+          "create_time": "0",
+          "sec_sender": "",
+          "bot_reply_message_id": "940000000000000041",
+          "regen_msg_list": [],
+          "section_id": "90000000000000001section",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "b",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "BLOCK_REPLY_TWO 带搜索。",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            },
+            {
+              "block_type": 10025,
+              "block_id": "s",
+              "parent_id": "0",
+              "content": {
+                "search_query_result_block": {
+                  "summary": "",
+                  "queries": [
+                    "SYNTHETIC QUERY"
+                  ],
+                  "results": [
+                    {
+                      "text_card": {
+                        "title": "SYNTHETIC RESULT",
+                        "url": "https://example.invalid/block-result",
+                        "summary": "s",
+                        "sitename": "Block Site",
+                        "logo_url": "",
+                        "doc_id": "d"
+                      }
+                    }
+                  ],
+                  "scene": 2
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            },
+            {
+              "block_type": 2002,
+              "block_id": "q",
+              "parent_id": "0",
+              "content": {
+                "suggest_block": {
+                  "suggest": "SYNTHETIC_QUESTION",
+                  "suggestions": [
+                    "SYNTHETIC_QUESTION",
+                    "SYNTHETIC_FOLLOW_UP",
+                    "SYNTHETIC_THIRD"
+                  ]
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            },
+            {
+              "block_type": 10053,
+              "block_id": "t",
+              "parent_id": "0",
+              "content": {
+                "tips_block": {
+                  "type": 1,
+                  "text": "\n\nSYNTHETIC DISCLAIMER TEXT。"
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

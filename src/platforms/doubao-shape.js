@@ -39,7 +39,7 @@ export function summarizeDoubaoResponse(data, conversationId) {
     if (typeof message?.section_id === "string") sections.add(message.section_id);
     userTypes.add(typeOf(message?.user_type) + ":" + String(message?.user_type));
     if (Array.isArray(message?.regen_msg_list) && message.regen_msg_list.length) regenNonEmpty++;
-    if (message?.status !== 0 || message?.content_status !== 0 || message?.ext?.is_finish !== "1") unfinished++;
+    if (message?.status !== 0 || ![0, 120].includes(message?.content_status) || message?.ext?.is_finish !== "1") unfinished++;
     if (typeof message?.index_in_conv === "string" && /^\d+$/.test(message.index_in_conv)) indexValues.push(Number(message.index_in_conv));
     const blocks = Array.isArray(message?.content_block) ? message.content_block : [];
     blockCounts.add(blocks.length);

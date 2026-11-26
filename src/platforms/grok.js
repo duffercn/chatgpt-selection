@@ -1,5 +1,6 @@
 import { attachmentPlaceholder, cleanText, textFromBlocks } from "../core/content.js";
 import { CopyError, ErrorCode, responseError } from "../core/errors.js";
+import { renderGrokMessage } from "./grok-rich.js";
 import { pathId, strictCurrentPath, uniqueMessages } from "./shared.js";
 
 export function parseMaybeNdjson(text) {
@@ -34,11 +35,21 @@ function nodeText(node) {
   return textFromBlocks(node.content || node.message?.content || node.parts);
 }
 
-function grokText(node) {
-  const text = nodeText(node);
+/**
+ * A reply's text and references. Inline card tags in `message` become static
+ * Markdown, and the reply's web search results and X posts become `references`.
+ * `message` is the only body form that carries cards; block bodies keep their
+ * plain text.
+ */
+function grokMessage(node) {
+  const rich = typeof node.message === "string" ? renderGrokMessage(node) : null;
+  const text = rich ? rich.text : nodeText(node);
   const attachments = [...(node.imageAttachments || []), ...(node.fileAttachments || [])]
     .map(attachmentPlaceholder);
-  return cleanText([text, ...attachments].filter(Boolean).join("\n\n"));
+  return {
+    text: cleanText([text, ...attachments].filter(Boolean).join("\n\n")),
+    references: rich ? rich.references : []
+  };
 }
 
 export function parseGrokConversation(data, conversationId = "") {
@@ -62,9 +73,13 @@ export function parseGrokConversation(data, conversationId = "") {
   const messages = uniqueMessages(path.map((node) => {
     const sender = node.sender || node.role || node.author;
     const role = ["human", "user"].includes(sender) ? "user" : ["assistant", "grok"].includes(sender) ? "assistant" : "";
-    const text = grokText(node);
-    return role && text ? { role, text } : null;
-  }).filter(Boolean));
+    const { text, references } = grokMessage(node);
+    // A reply with no prose (an unfinished `partial` answer) carries no content
+    // of its own; its sources belong to the reply the user actually reads, so
+    // the node is skipped instead of contributing a bare source list.
+    if (!role || !text) return null;
+    return references.length ? { role, text, references } : { role, text };
+  }).filter((message) => message && (message.text || message.references?.length)));
   return { platform: "grok", id: conversationId, title: data?.title || data?.conversation?.title || "", messages };
 }
 

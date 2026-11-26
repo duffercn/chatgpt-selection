@@ -1,0 +1,171 @@
+{
+  "cmd": 3100,
+  "sequence_id": "00000000-0000-4000-8000-000000000000",
+  "version": 1,
+  "status_code": 0,
+  "status_desc": "OK",
+  "ext": {},
+  "downlink_body": {
+    "pull_singe_chain_downlink_body": {
+      "has_more": false,
+      "regen_messages": {},
+      "msg_cursor": "1",
+      "messages": [
+        {
+          "conversation_id": "80000000000000001",
+          "message_id": "8000000000000000111",
+          "message_body_version": "1",
+          "sender_id": "1",
+          "user_type": 2,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "2",
+          "create_time": "0",
+          "sec_sender": "",
+          "bot_reply_message_id": "8000000000000000112",
+          "regen_msg_list": [],
+          "section_id": "80000000000000001section",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "content_block": [
+            {
+              "block_type": 10025,
+              "block_id": "8000000000000000121",
+              "parent_id": "0",
+              "content": {
+                "search_query_result_block": {
+                  "summary": "synthetic summary",
+                  "queries": [
+                    "示例查询一",
+                    "示例查询二"
+                  ],
+                  "results": [
+                    {
+                      "text_card": {
+                        "id": "c1",
+                        "summary": "",
+                        "title": "示例结果",
+                        "sitename": "example",
+                        "url": "https://example.invalid/result",
+                        "logo_url": "",
+                        "doc_id": "d1",
+                        "image_url": "",
+                        "has_image": false,
+                        "publish_time_second": "2025-01-01T00:00:00+08:00"
+                      }
+                    },
+                    {
+                      "video_card": {
+                        "id": "c2",
+                        "item_id": "1",
+                        "video_captions": "示例视频结果说明\n第二行",
+                        "main_site_url": "https://example.invalid/video-result",
+                        "album_image": "https://p5-sign.example.invalid/v.jpg",
+                        "source_app_name": "示例视频源"
+                      }
+                    }
+                  ],
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "vlm_rich_media_results": [],
+                  "scene": "",
+                  "search_type": "",
+                  "extend_fields": {}
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            },
+            {
+              "block_type": 10000,
+              "block_id": "8000000000000000120",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "第一行摘要。\n\n第一段正文，带引用。\n\n😀 emoji 之后继续写。\n\n## 小节\n\n结尾。",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [
+                {
+                  "type": 2,
+                  "tag_info": "",
+                  "info": "{\"insert_text\": \"(示例站)\", \"pos\": [15], \"url\": \"https://example.invalid/paper?f_link_type=f_linkinlinenote&flow_extra=abc%3D%3D&keep=1\", \"title\": \"示例论文\", \"website_name\": \"示例站\", \"summary\": \"s\", \"icon\": \"https://p26-sign.byteimg.com/i\", \"doc_id\": \"d1\", \"quota_type\": 2, \"authority\": \"field_matched_site\"}"
+                },
+                {
+                  "type": 202,
+                  "tag_info": "",
+                  "info": "{\"pos\": 52, \"scene_type\": 2, \"media\": [{\"type\": 1, \"image\": {\"img_caption\": \"表情后的图\", \"main_site_url\": \"https://example.invalid/after-emoji\", \"thumb_url\": \"https://p1-sign.byteimg.com/e\", \"full_size_url\": [\"https://p3-sign.byteimg.com/e\"], \"source_app_name\": \"站内\"}}]}"
+                },
+                {
+                  "type": 202,
+                  "tag_info": "",
+                  "info": "{\"pos\": 83, \"scene_type\": 1, \"media\": [{\"type\": 2, \"video\": {\"video_captions\": \"小节前的视频\\n第二行忽略\", \"source_app_name\": \"示例视频源\", \"main_site_url\": \"https://example.invalid/video2\", \"album_image\": \"https://p5-sign.example.invalid/c.jpg\", \"video_first_frame_image\": \"https://p5-sign.example.invalid/d.jpg\"}}]}"
+                },
+                {
+                  "type": 202,
+                  "tag_info": "",
+                  "info": "{\"pos\": 94, \"scene_type\": 1, \"media\": [{\"type\": 1, \"image\": {\"img_caption\": \"示意图一\", \"main_site_url\": \"https://example.invalid/one\", \"thumb_url\": \"https://p1-sign.byteimg.com/x?sig=y\", \"full_size_url\": [\"https://p3-sign.byteimg.com/x?sig=y\"], \"source_app_name\": \"站内\"}}, {\"type\": 1, \"image\": {\"img_caption\": \"\", \"main_site_url\": \"https://example.invalid/two\", \"thumb_url\": \"https://p1-sign.byteimg.com/z\", \"full_size_url\": [\"https://p3-sign.byteimg.com/z\"], \"source_app_name\": \"站内\"}}, {\"type\": 2, \"video\": {\"video_captions\": \"第一条视频说明\\n第二行不要\", \"source_app_name\": \"示例视频源\", \"main_site_url\": \"https://example.invalid/video\", \"album_image\": \"https://p5-sign.example.invalid/a.jpg\", \"video_first_frame_image\": \"https://p5-sign.example.invalid/b.jpg\"}}]}"
+                }
+              ],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ]
+        },
+        {
+          "conversation_id": "80000000000000001",
+          "message_id": "8000000000000000112",
+          "message_body_version": "1",
+          "sender_id": "1",
+          "user_type": 1,
+          "status": 0,
+          "content_type": 9999,
+          "content": "",
+          "content_status": 0,
+          "index_in_conv": "1",
+          "create_time": "0",
+          "sec_sender": "",
+          "bot_reply_message_id": "0",
+          "regen_msg_list": [],
+          "section_id": "80000000000000001section",
+          "ext": {
+            "is_finish": "1",
+            "use_content_block": "1"
+          },
+          "content_block": [
+            {
+              "block_type": 10000,
+              "block_id": "8000000000000000110",
+              "parent_id": "0",
+              "content": {
+                "text_block": {
+                  "text": "SYNTHETIC_QUESTION_1",
+                  "icon_url": "",
+                  "icon_url_dark": "",
+                  "summary": ""
+                },
+                "pc_event_block": ""
+              },
+              "meta_info": [],
+              "is_finish": true,
+              "extra_info": {},
+              "append_fields": []
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

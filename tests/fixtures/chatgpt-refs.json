@@ -1,0 +1,123 @@
+{
+ "conversation_id": "chatgpt-refs-fixture",
+ "title": "Citations and rich components",
+ "current_node": "a2",
+ "mapping": {
+  "root": {
+   "id": "root",
+   "parent": null,
+   "message": null
+  },
+  "u1": {
+   "id": "u1",
+   "parent": "root",
+   "message": {
+    "author": {
+     "role": "user"
+    },
+    "content": {
+     "content_type": "text",
+     "parts": [
+      "Tell me about apples"
+     ]
+    }
+   }
+  },
+  "a1": {
+   "id": "a1",
+   "parent": "u1",
+   "message": {
+    "author": {
+     "role": "assistant"
+    },
+    "metadata": {
+     "model_dil_v2": {
+      "code": "DIL.render(...)"
+     },
+     "content_references": [
+      {
+       "type": "grouped_webpages",
+       "matched_text": "citeturn0search0",
+       "start_idx": 15,
+       "end_idx": 34,
+       "alt": "([Orchard notes](https://example.org/notes?utm_source=chatgpt.com))",
+       "items": [
+        {
+         "title": "Orchard notes",
+         "url": "https://example.org/notes?utm_source=chatgpt.com"
+        }
+       ]
+      },
+      {
+       "type": "url",
+       "matched_text": "urlSource Aturn0search1",
+       "start_idx": 0,
+       "end_idx": 0,
+       "alt": "[Source A](https://example.org/a?utm_source=chatgpt.com)"
+      },
+      {
+       "type": "image_group",
+       "matched_text": "image_group{\"query\": [\"red apple orchard\", \"green pear tree\"]}",
+       "start_idx": 0,
+       "end_idx": 0,
+       "alt": "![Image](https://images.openai.com/static/x?purpose=fullsize)"
+      },
+      {
+       "type": "hidden",
+       "matched_text": "citeturn0search9",
+       "start_idx": 0,
+       "end_idx": 0
+      }
+     ]
+    },
+    "content": {
+     "content_type": "text",
+     "parts": [
+      "Apples are redciteturn0search0, pears are green urlSource Aturn0search1.\n\nimage_group{\"query\": [\"red apple orchard\", \"green pear tree\"]}\n\nA hidden marker stays removedciteturn0search9.\n\n<grid columns={2}>\n  <grid-item>\n    <col gap={1}>\n      **Orchard notes**\n      <list marker=\"number\">\n        <list-item>Pick in autumn</list-item>\n        <list-item>Store cool</list-item>\n      </list>\n    </col>\n  </grid-item>\n</grid>\n\n<table>\n<table-row><table-cell>**Fruit**</table-cell><table-cell>Season</table-cell></table-row>\n<table-row><table-cell>Apple</table-cell><table-cell>Autumn</table-cell></table-row>\n</table>\n\n<AsyncImageGroup query={[\"apple close-up\",\"pear close-up\"]}/>\n\n<Entity value=\"Malus domestica\" category=\"species\"/>\n\n<CodeBlock language=\"python\">\nprint(\"apple\")\n</CodeBlock>\n\n<Chart content={{chartType:'bar',meta:{title:'Harvest',description:'Sample data only.'},xKey:'year',series:[{dataKey:'tons',label:'Tons'}],data:[{year:2024,tons:12},{year:2025,tons:15}]}}/>\n\n<slider min={1} max={10} marks={[{value:1,label:'1'},{value:10,label:'10'}]}/>\n\n<Link url=\"https://example.org/orchard\" title=\"Orchard guide\"/> plus <Cite refs={[\"turn0search0\"]}/>\n\nClosing line."
+     ]
+    }
+   }
+  },
+  "u2": {
+   "id": "u2",
+   "parent": "a1",
+   "message": {
+    "author": {
+     "role": "user"
+    },
+    "content": {
+     "content_type": "text",
+     "parts": [
+      "A pasted transcript:\n\n<box border radius=\"md\">\n  **People — decide**\n</box>\n\nand a<b stays as typed"
+     ]
+    }
+   }
+  },
+  "a2": {
+   "id": "a2",
+   "parent": "u2",
+   "message": {
+    "author": {
+     "role": "assistant"
+    },
+    "metadata": {
+     "content_references": [
+      {
+       "type": "sources_footnote",
+       "matched_text": " ",
+       "start_idx": 0,
+       "end_idx": 0,
+       "alt": ""
+      }
+     ]
+    },
+    "content": {
+     "content_type": "text",
+     "parts": [
+      "Marker-only answerciteturn0search0\n\nSearch leftovers differ: hidden references keep their place."
+     ]
+    }
+   }
+  }
+ }
+}

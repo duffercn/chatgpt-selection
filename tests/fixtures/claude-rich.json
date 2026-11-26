@@ -1,0 +1,103 @@
+{
+  "uuid": "claude-rich-fixture",
+  "name": "Rich fixture",
+  "current_leaf_message_uuid": "a1",
+  "chat_messages": [
+    {
+      "uuid": "u1",
+      "parent_message_uuid": "conversation-root",
+      "index": 0,
+      "sender": "human",
+      "content": [{ "type": "text", "text": "Explain attention and show me a diagram." }]
+    },
+    {
+      "uuid": "a1",
+      "parent_message_uuid": "u1",
+      "index": 1,
+      "sender": "assistant",
+      "content": [
+        { "type": "thinking", "thinking": "Internal plan that must never be copied." },
+        { "type": "token_budget", "start_timestamp": "2026-01-01T00:00:00Z", "stop_timestamp": "2026-01-01T00:00:01Z" },
+        { "type": "text", "text": "Let me search and draw it." },
+        { "type": "tool_use", "id": "tu_search_1", "name": "WebSearch", "input": { "mode": "standard", "query": "self attention explained" } },
+        { "type": "tool_use", "id": "tu_search_2", "name": "WebSearch", "input": { "mode": "standard", "query": "multi-head attention intuition" } },
+        { "type": "tool_use", "id": "tu_hidden_1", "name": "mcp__visualize__read_me", "hidden_in_chat": true, "input": { "modules": ["diagram"] } },
+        { "type": "tool_result", "name": "mcp__visualize__read_me", "hidden_in_chat": true, "is_error": false, "tool_use_id": "tu_hidden_1", "content": [{ "type": "text", "text": "INTERNAL DOCS THAT MUST NOT BE COPIED" }] },
+        {
+          "type": "tool_result",
+          "name": "WebSearch",
+          "tool_use_id": "tu_search_1",
+          "is_error": false,
+          "content": [{ "type": "text", "text": "Attention Is All You Need\nhttps://arxiv.org/abs/1706.03762\n\nThe Illustrated Transformer\nhttps://jalammar.github.io/illustrated-transformer/\n\nbroken pair without a title\nnot a url\n" }]
+        },
+        {
+          "type": "tool_result",
+          "name": "WebSearch",
+          "tool_use_id": "tu_search_2",
+          "is_error": false,
+          "content": [{ "type": "text", "text": "Attention Visualizer\nhttps://bbycroft.net/llm" }]
+        },
+        { "type": "tool_use", "id": "tu_search_3", "name": "web_search", "input": { "mode": "standard", "query": "attention benchmark" } },
+        {
+          "type": "tool_result",
+          "name": "web_search",
+          "tool_use_id": "tu_search_3",
+          "is_error": false,
+          "content": [
+            { "type": "knowledge", "title": "Attention benchmark leaderboard", "url": "https://papers.example/attention", "metadata": { "site_name": "papers.example", "site_domain": "papers.example" }, "is_missing": false },
+            { "type": "knowledge", "title": "Removed page", "url": "https://removed.example/x", "metadata": {}, "is_missing": true }
+          ]
+        },
+        { "type": "token_budget", "start_timestamp": "2026-01-01T00:00:04Z", "stop_timestamp": "2026-01-01T00:00:05Z" },
+        {
+          "type": "tool_use",
+          "id": "tu_widget_1",
+          "name": "mcp__visualize__show_widget",
+          "input": {
+            "title": "attention_flow_demo",
+            "loading_messages": ["Drawing..."],
+            "widget_code": "<h2 class=\"sr-only\">Attention flow demo heading</h2>\n<style>.x{stroke:#EF9F27;fill:none;viewBox:0;}</style>\n<svg viewBox=\"0 0 100 100\" width=\"100%\"><title>Attention arcs</title><desc>Arcs from query to keys.</desc><text class=\"label\" x=\"10\">Query word</text><text class=\"label\" x=\"10\">Query word</text><text>Key word</text></svg>\n<p class=\"caption\">Thicker arcs mean higher weight.</p>\n<script>\nconst el = document.getElementById('arcs');\nfunction draw(){ el.setAttribute('stroke', 'red'); }\ndraw();\n</script>"
+          }
+        },
+        {
+          "type": "tool_result",
+          "name": "mcp__visualize__show_widget",
+          "tool_use_id": "tu_widget_1",
+          "is_error": false,
+          "content": [{ "type": "text", "text": "Content rendered and shown to the user. Please do not duplicate the shown content in text because it's already visually represented." }]
+        },
+        { "type": "tool_use", "id": "tu_artifact_1", "name": "artifacts", "input": { "language": "python", "content": "print('hello')" } },
+        { "type": "tool_use", "id": "tu_unknown_1", "name": "mcp__unknown__thing", "input": { "arg": 1 } },
+        { "type": "tool_result", "name": "mcp__unknown__thing", "tool_use_id": "tu_unknown_1", "is_error": false, "content": [{ "type": "text", "text": "ok" }] },
+        { "type": "tool_use", "id": "tu_unknown_2", "name": "mcp__broken__thing", "input": { "arg": 2 } },
+        { "type": "tool_result", "name": "mcp__broken__thing", "tool_use_id": "tu_unknown_2", "is_error": true, "content": [{ "type": "text", "text": "boom" }] },
+        { "type": "tool_use", "id": "tu_files_1", "name": "present_files", "input": { "filepaths": ["/mnt/user-data/outputs/quarterly-plan.md", "/mnt/user-data/outputs/budget.csv"] } },
+        {
+          "type": "tool_result",
+          "name": "present_files",
+          "tool_use_id": "tu_files_1",
+          "is_error": false,
+          "content": [
+            { "type": "local_resource", "name": "quarterly-plan", "file_path": "/mnt/user-data/outputs/quarterly-plan.md", "mime_type": "text/markdown", "artifact_publishable": true },
+            { "type": "local_resource", "name": "budget", "file_path": "/mnt/user-data/outputs/budget.csv", "mime_type": "text/csv", "artifact_publishable": false },
+            { "type": "local_resource", "name": "quarterly-plan", "file_path": "/mnt/user-data/outputs/quarterly-plan.md", "mime_type": "text/markdown", "artifact_publishable": true }
+          ]
+        },
+        { "type": "tool_use", "id": "tu_read_1", "name": "Read", "input": { "path": "/mnt/user-data/uploads/diagram.png" } },
+        {
+          "type": "tool_result",
+          "name": "Read",
+          "tool_use_id": "tu_read_1",
+          "is_error": false,
+          "content": [
+            { "type": "text", "text": "[Image source: /tmp/claude-tool-results/private.png]" },
+            { "type": "image", "file_uuid": "00000000-0000-0000-0000-000000000001", "preview_url": "https://preview.example/private/one.png", "thumbnail_url": "https://preview.example/private/one-thumb.png" },
+            { "type": "image", "file_uuid": "00000000-0000-0000-0000-000000000002", "preview_url": "https://preview.example/private/two.png", "thumbnail_url": "https://preview.example/private/two-thumb.png" }
+          ]
+        },
+        { "type": "web_page", "url": "https://example.com" },
+        { "type": "text", "text": "Attention weighs every key against the query." }
+      ]
+    }
+  ]
+}

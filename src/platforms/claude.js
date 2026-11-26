@@ -1,4 +1,5 @@
-import { attachmentPlaceholder, cleanText, textFromBlocks } from "../core/content.js";
+import { attachmentPlaceholder, cleanText } from "../core/content.js";
+import { renderClaudeBlocks } from "./claude-rich.js";
 import { CopyError, ErrorCode, responseError } from "../core/errors.js";
 import { pathId, strictCurrentPath, uniqueMessages } from "./shared.js";
 
@@ -16,7 +17,7 @@ export function parseClaudeConversation(data) {
   const messages = uniqueMessages(nodes.map((message) => {
     const role = message.sender === "human" ? "user" : message.sender === "assistant" ? "assistant" : "";
     if (!role) return null;
-    const body = textFromBlocks(message.content) || cleanText(message.text || "");
+    const body = renderClaudeBlocks(message.content) || cleanText(message.text || "");
     const extras = [...(message.attachments || []), ...(message.files || [])].map(attachmentPlaceholder);
     const text = cleanText([body, ...extras].filter(Boolean).join("\n\n"));
     return text ? { role, text } : null;

@@ -1,0 +1,122 @@
+{
+  "data": {
+    "biz_data": {
+      "current_message_id": "a4",
+      "chat_session": {
+        "chat_session_id": "99999999-8888-4777-8666-555555555555",
+        "title": "Rich fixture"
+      },
+      "chat_messages": [
+        {
+          "message_id": "u1",
+          "parent_id": null,
+          "role": "USER",
+          "fragments": [
+            {
+              "type": "FILE",
+              "files": [
+                {
+                  "id": "file-1",
+                  "file_name": "report.txt",
+                  "file_size": 12,
+                  "is_image": false,
+                  "status": "SUCCESS",
+                  "signed_path": "/file?token=fixture-secret"
+                },
+                {
+                  "id": "file-2",
+                  "file_name": "chart.png",
+                  "file_size": 34,
+                  "is_image": true,
+                  "status": "SUCCESS",
+                  "signed_path": "/file?token=fixture-secret"
+                }
+              ]
+            },
+            { "type": "REQUEST", "content": "What does the report say?" }
+          ]
+        },
+        {
+          "message_id": "a2",
+          "parent_id": "u1",
+          "role": "ASSISTANT",
+          "fragments": [
+            { "type": "THINK", "content": "Private reasoning", "elapsed_secs": 3, "references": [], "stage_id": 1 },
+            {
+              "type": "SEARCH",
+              "status": "FINISHED",
+              "content": "Found 2 web pages",
+              "queries": ["transformer architecture", "self attention"],
+              "results": [
+                {
+                  "url": "https://second.example.org/b",
+                  "title": "Second source",
+                  "snippet": "B",
+                  "cite_index": 2,
+                  "site_name": "Example Two",
+                  "published_at": 0.0
+                },
+                {
+                  "url": "https://first.example.org/a",
+                  "title": "First source",
+                  "snippet": "A",
+                  "cite_index": 1,
+                  "site_name": "Example One",
+                  "published_at": 0.0
+                },
+                {
+                  "url": "javascript:alert(1)",
+                  "title": "Unsafe source",
+                  "cite_index": 3,
+                  "site_name": "Unsafe"
+                },
+                {
+                  "url": "https://second.example.org/b",
+                  "title": "Second source duplicate",
+                  "cite_index": 4,
+                  "site_name": "Example Two"
+                }
+              ]
+            },
+            {
+              "type": "RESPONSE",
+              "content": "Attention matters[citation:1]. It is parallel[citation:2]. Gone[citation:3].",
+              "references": [],
+              "stage_id": 2
+            },
+            { "type": "TIP", "content": "This response is AI-generated, for reference only.", "style": "WARNING", "hide_on_wip": true }
+          ]
+        },
+        {
+          "message_id": "u3",
+          "parent_id": "a2",
+          "role": "USER",
+          "fragments": [{ "type": "REQUEST", "content": "Search without queries" }]
+        },
+        {
+          "message_id": "a4",
+          "parent_id": "u3",
+          "role": "ASSISTANT",
+          "fragments": [
+            {
+              "type": "SEARCH",
+              "status": "FINISHED",
+              "content": "Found 1 web page",
+              "queries": [],
+              "results": [
+                {
+                  "url": "https://only.example.net/page",
+                  "title": "Only source",
+                  "snippet": "C",
+                  "cite_index": 1,
+                  "site_name": "Only Site"
+                }
+              ]
+            },
+            { "type": "RESPONSE", "content": "Only one answer[citation:1]." }
+          ]
+        }
+      ]
+    }
+  }
+}

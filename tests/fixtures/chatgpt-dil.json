@@ -1,0 +1,54 @@
+{
+ "conversation_id": "chatgpt-dil-fixture",
+ "title": "DIL fixture",
+ "current_node": "a1",
+ "mapping": {
+  "root": {
+   "id": "root",
+   "parent": null,
+   "message": null
+  },
+  "u1": {
+   "id": "u1",
+   "parent": "root",
+   "message": {
+    "author": {
+     "role": "user"
+    },
+    "content": {
+     "content_type": "text",
+     "parts": [
+      "Teach me refraction <box> literally"
+     ]
+    }
+   }
+  },
+  "a1": {
+   "id": "a1",
+   "parent": "u1",
+   "message": {
+    "author": {
+     "role": "assistant"
+    },
+    "metadata": {
+     "model_dil_v2": {
+      "code": "DIL.render(...)"
+     },
+     "view_state": {
+      "root": {
+       "answers": {
+        "0": 0
+       }
+      }
+     }
+    },
+    "content": {
+     "content_type": "text",
+     "parts": [
+      "Intro with a table:\n\n| Material | n |\n|---|---:|\n| Water | 1.33 |\n\n\\[\nn=\\frac{c}{v}\n\\]\n\n<AsyncImage query=\"straw in water looks bent\" aspectRatio=\"5:3\" maxWidth=\"420px\"/>\n\n<box background=\"surface-secondary\" radius=\"lg\" padding={3} gap={2}>\n  <math block value={String.raw`n=\\frac{c}{v}`}/>\n  Where:\n\n  - \\(n\\): index\n  - \\(v\\): speed in medium\n</box>\n\n<box border radius=\"xl\" padding={3} gap={1}>\n  <svg viewBox=\"0 0 340 258\" width=\"100%\" xmlns=\"http://www.w3.org/2000/svg\">\n    <path d=\"M12 127 H328\" stroke=\"#267DB0\" strokeWidth=\"2\"/>\n    <g fill=\"currentColor\" fontSize=\"13\">\n      <text x=\"24\" y=\"24\">Air</text>\n      <text x=\"24\" y=\"228\">Water</text>\n      <text x=\"184\" y=\"22\">Normal</text>\n    </g>\n  </svg>\n  <caption>The normal is the dashed line.</caption>\n</box>\n\n{@body const questions = [{q:\"Speed in water?\",opts:[\"Faster\",\"Slower\"],a:1,why:\"Water is denser.\"}]}\n{@body const [answers,setAnswers] = DIL.useState({})}\n<box border radius=\"xl\" padding={3} gap={3}>\n  {#each questions as q,i}\n    <box key={i} gap={2}>\n      <text weight=\"medium\">{i+1}. {q.q}</text>\n      <radio-group direction=\"col\" value={answers[i]===undefined?\"\":String(answers[i])} onChange={v=>setAnswers(p=>({...p,[i]:Number(v)}))}>\n        {#each q.opts as op,j}\n          <radio value={String(j)}>{op}</radio>\n        {/each}\n      </radio-group>\n      {#if answers[i]!==undefined}\n        <text size=\"sm\">{q.why}</text>\n      {/if}\n    </box>\n  {/each}\n</box>\n\n<LearningQuiz subjectCategory=\"optics\" title=\"Mini quiz\" questions={[{\"id\":\"q1\",\"type\":\"single_select\",\"question\":\"Which formula?\",\"options\":[{\"value\":\"A\",\"label\":\"n = c / v\",\"feedback\":\"Right.\"},{\"value\":\"B\",\"label\":\"n = v / c\",\"feedback\":\"Inverted.\"}],\"correctValues\":[\"A\"],\"hint\":\"Faster in vacuum.\"},{\"id\":\"q2\",\"type\":\"true_false\",\"question\":\"Glass bends light toward the normal.\",\"options\":[{\"value\":\"true\",\"label\":\"True\"},{\"value\":\"false\",\"label\":\"False\"}],\"correctValues\":[\"true\"]}]}/>\n\n{@body const [mode,setMode]=DIL.useState(\"sin\")}\n{@body const [angle,setAngle]=DIL.useState(\"30\")}\n<box border radius=\"xl\" padding={3} gap={3}>\n  <row justify=\"between\" align=\"center\">\n    **Calculator**\n    <badge color=\"secondary\">DEG mode</badge>\n  </row>\n  <segmented-control block={true} value={mode} onChange={v=>{setMode(v)}} options={[{\"label\":\"sin\",\"value\":\"sin\"},{\"label\":\"asin\",\"value\":\"asin\"}]}/>\n  <input value={angle} onChange={setAngle} placeholder={mode===\"sin\"?\"e.g. 30\":\"e.g. 0.5\"}/>\n  <title size=\"2xl\">{mode===\"sin\"?`sin(${angle})`:`asin(${angle})`}</title>\n  <text color=\"secondary\" size=\"xs\">asin is not 1/sin.</text>\n</box>\n\n<box border radius=\"xl\" padding={3} gap={2}>\n  <row align=\"center\" justify=\"center\" gap={1} wrap=\"wrap\">\n    {#each [\"SHIFT\",\"sin\",\"0\",\".\",\"5\",\"=\"] as key,i}\n      <box key={i} border radius=\"md\" padding={{x:3,y:2}}>\n        <text weight=\"medium\">{key}</text>\n      </box>\n    {/each}\n  </row>\n  <title size=\"2xl\">30°</title>\n</box>\n\nClosing line."
+     ]
+    }
+   }
+  }
+ }
+}

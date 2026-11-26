@@ -15,6 +15,7 @@ describe("platform adapters", () => {
     expect(adapterForUrl("https://grok.com/c/123")?.id).toBe("grok");
     expect(adapterForUrl("https://chat.deepseek.com/a/chat/s/11111111-2222-4333-8444-555555555555")?.id).toBe("deepseek");
     expect(adapterForUrl("https://www.doubao.com/chat/123")?.id).toBe("doubao");
+    expect(adapterForUrl("https://gemini.google.com/app/0123456789abcdef")?.id).toBe("gemini");
     expect(adapterForUrl("https://example.com")).toBeNull();
   });
 
@@ -24,7 +25,6 @@ describe("platform adapters", () => {
     expect(adapterForUrl("https://qianwen.com/chat/11111111222243338444555555555555")).toBeNull();
     expect(adapterForUrl("https://kimi.com/chat/123")).toBeNull();
     expect(adapterForUrl("https://chat.qwen.ai/c/123")).toBeNull();
-    expect(adapterForUrl("https://gemini.google.com/app/0123456789abcdef")).toBeNull();
   });
 
   it("selects only ChatGPT current_node ancestry and preserves an image placeholder", () => {
@@ -86,24 +86,24 @@ describe("platform adapters", () => {
 });
 
 describe("shipping scope", () => {
-  it("registers exactly the five accepted platforms", () => {
+  it("registers exactly the six accepted platforms", () => {
     expect(adapters.map((adapter) => adapter.id).sort()).toEqual([
-      "chatgpt", "claude", "deepseek", "doubao", "grok"
+      "chatgpt", "claude", "deepseek", "doubao", "gemini", "grok"
     ]);
   });
 
   it("declares host permissions and content-script matches for only those hosts", () => {
     const manifest = JSON.parse(readFileSync(new URL("../manifest.json", import.meta.url), "utf8"));
     const expected = [
-      "https://chatgpt.com/*", "https://chat.openai.com/*", "https://claude.ai/*",
+      "https://chatgpt.com/*", "https://chat.openai.com/*", "https://claude.ai/*", "https://gemini.google.com/*",
       "https://grok.com/*", "https://chat.deepseek.com/*",
       "https://doubao.com/*", "https://www.doubao.com/*"
     ];
     expect(manifest.host_permissions.sort()).toEqual([...expected].sort());
     expect(manifest.content_scripts[0].matches.sort()).toEqual([...expected].sort());
-    expect(manifest.version).toBe("0.6.0");
+    expect(manifest.version).toBe("0.7.0");
     // No host may remain for a paused platform.
-    for (const host of ["perplexity", "qianwen", "kimi", "qwen", "gemini"]) {
+    for (const host of ["perplexity", "qianwen", "kimi", "qwen"]) {
       expect(manifest.host_permissions.some((entry) => entry.includes(host))).toBe(false);
     }
   });

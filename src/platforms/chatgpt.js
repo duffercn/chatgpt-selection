@@ -1,5 +1,7 @@
 import { attachmentPlaceholder, cleanText } from "../core/content.js";
 import { CopyError, ErrorCode, responseError } from "../core/errors.js";
+import { convertDilMarkup } from "./chatgpt-dil.js";
+import { replaceCitationMarkers } from "./chatgpt-refs.js";
 import { pathId, strictCurrentPath, uniqueMessages } from "./shared.js";
 
 function partText(part) {
@@ -25,13 +27,18 @@ export function parseChatGptConversation(data) {
     if (!message || !["user", "assistant"].includes(role)) return null;
     if (message.metadata?.is_visually_hidden_from_conversation) return null;
     const content = message.content;
-    const text = cleanText(
+    const raw =
       typeof content === "string" ? content
         : typeof content?.text === "string" ? content.text
           : typeof content?.result === "string" ? content.result
             : Array.isArray(content?.parts) ? content.parts.map(partText).filter(Boolean).join("\n\n")
-              : ""
-    );
+              : "";
+    // Only flagged DIL replies are converted; user text and plain replies stay as written.
+    const dil = role === "assistant" && message.metadata?.model_dil_v2;
+    // Citation markers (`\uE200cite…`) are rewritten from content_references first, so
+    // both DIL and plain replies come out clean.
+    const cited = role === "user" ? raw : replaceCitationMarkers(raw, message.metadata?.content_references);
+    const text = cleanText(dil ? convertDilMarkup(cited) : cited);
     return text ? { role, text } : null;
   }).filter(Boolean));
   return { platform: "chatgpt", id: data.conversation_id || "", title: data.title || "", messages };

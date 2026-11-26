@@ -1,7 +1,8 @@
 import { CopyError, ErrorCode, responseError } from "../core/errors.js";
+import { CANDIDATE, HISTORY, RECORD, RESPONSE, USER, USER_PAYLOAD } from "./gemini-layout.js";
+import { isBlank, extrasMarkers, hasUnhandledExtras, renderCandidate, userAttachments } from "./gemini-rich.js";
 
 const invalid = (message) => new CopyError(ErrorCode.INVALID_RESPONSE, `Gemini: ${message}`);
-const empty = (value) => Array.isArray(value) && value.length === 0;
 const text = (value) => typeof value === "string" && value.trim().length > 0;
 
 export function decodeGeminiHistory(raw) {
@@ -19,24 +20,61 @@ export function decodeGeminiHistory(raw) {
 }
 
 export function parseGeminiConversation(data, id) {
-  if (!Array.isArray(data) || data.length !== 4 || data[1] !== null || data[2] !== null || !empty(data[3]) || !Array.isArray(data[0]) || !data[0].length) throw invalid("History is empty, paginated or uses an unverified format.");
+  if (!Array.isArray(data) || !Array.isArray(data[HISTORY.records]) || !data[HISTORY.records].length) throw invalid("History is empty or uses an unverified format.");
+  if (HISTORY.pagination.some((slot) => !isBlank(data[slot]))) throw invalid("History is paginated; only a complete single-page conversation can be copied.");
+  const tail = data[HISTORY.tail];
+  if (!Array.isArray(tail)) throw invalid("History has an unverified tail field.");
+  if (hasUnhandledExtras(tail)) throw invalid("History has an unverified tail field that could hold visible content.");
+  // `data[3]` carries the turn's generated media; it belongs to the newest reply.
+  const tailMarkers = extrasMarkers(tail);
+
   const conversationId = `c_${id}`, seen = new Set();
-  const records = data[0];
+  const records = data[HISTORY.records];
   const messages = [];
   for (let index = records.length - 1; index >= 0; index--) {
     const record = records[index], older = records[index + 1];
-    if (!Array.isArray(record) || record.length !== 5 || !Array.isArray(record[0]) || record[0].length !== 2 || record[0][0] !== conversationId || !text(record[0][1]) || seen.has(record[0][1])) throw invalid("Conversation identifiers are missing or ambiguous.");
-    seen.add(record[0][1]);
-    if (older ? !Array.isArray(record[1]) || record[1].length !== 3 || record[1][0] !== conversationId || record[1][1] !== older[0][1] || record[1][2] !== older[3][3] : record[1] !== null) throw invalid("The current branch is incomplete or ambiguous.");
-    const user = record[2], response = record[3];
-    if (!Array.isArray(user) || user.length !== 11 || !Array.isArray(user[0]) || user[0].length !== 5 || !text(user[0][0]) || user[0].slice(1, 4).some(v => v !== null) || JSON.stringify(user[0][4]) !== "[[]]" || user[1] !== 2 || user[3] !== 1 || user[8] !== false || !empty(user[10]) || [2, 5, 6, 7, 9].some(i => user[i] !== null)) throw invalid("A user message contains unverified rich content.");
-    if (!Array.isArray(response) || response.length !== 32 || !Array.isArray(response[0]) || response[0].length !== 1 || response[9] !== true || response[24] !== 3 || response[25] !== 1) throw invalid("A reply is unfinished or has unverified alternatives.");
-    const candidate = response[0][0];
-    if (!Array.isArray(candidate) || candidate.length !== 38 || !text(candidate[0]) || candidate[0] !== response[3] || !Array.isArray(candidate[1]) || candidate[1].length !== 1 || !text(candidate[1][0]) || JSON.stringify(candidate[8]) !== "[2]" || !empty(candidate[28]) || JSON.stringify(candidate[12]) !== "[null,null,null,null,null,null,null,[]]") throw invalid("The selected answer contains unverified content.");
-    const known = new Set([0, 1, 8, 9, 12, 28, 37]);
-    if (candidate.some((value, i) => !known.has(i) && value !== null)) throw invalid("An unknown answer field could contain visible content.");
-    // response[12] is the duplicate rendering AST; candidate[37] is reasoning.
-    messages.push({ id: `${record[0][1]}:user`, role: "user", text: user[0][0] }, { id: candidate[0], role: "assistant", text: candidate[1][0] });
+    if (!Array.isArray(record) || !Array.isArray(record[RECORD.ids]) || !Array.isArray(record[RECORD.response])) throw invalid("A turn is incomplete or uses an unverified format.");
+    const ids = record[RECORD.ids];
+    if (ids.length !== 2 || ids[0] !== conversationId || !text(ids[1]) || seen.has(ids[1])) throw invalid("Conversation identifiers are missing or ambiguous.");
+    seen.add(ids[1]);
+
+    const response = record[RECORD.response];
+    const candidates = response[RESPONSE.candidates];
+    if (!Array.isArray(candidates) || !candidates.length) throw invalid("A reply is unfinished or has unverified alternatives.");
+    const candidate = candidates[0];
+    if (!Array.isArray(candidate) || !text(candidate[CANDIDATE.id]) || candidate[CANDIDATE.id] !== response[RESPONSE.id]) throw invalid("The selected answer is missing or ambiguous.");
+
+    // The active branch is the parent chain, oldest to newest: every turn but
+    // the oldest names the older turn it continues and the older reply's
+    // selected candidate. A fork (an alternative not in the chain) or a
+    // competing child makes the chain ambiguous and the copy is refused.
+    const parent = record[RECORD.parent];
+    if (older) {
+      if (!Array.isArray(parent) || parent.length !== 3 || parent[0] !== conversationId || parent[1] !== older[RECORD.ids]?.[1]) throw invalid("The current branch is incomplete or ambiguous.");
+      if (parent[2] !== older[RECORD.response]?.[RESPONSE.id]) throw invalid("The current branch points at a different answer than the selected one.");
+    } else if (!isBlank(parent)) {
+      throw invalid("The oldest turn already continues an earlier one; the history is truncated.");
+    }
+
+    const user = record[RECORD.user];
+    if (!Array.isArray(user) || !Array.isArray(user[USER.payload]) || typeof user[USER.payload][USER_PAYLOAD.text] !== "string") throw invalid("A user message is incomplete or uses an unverified format.");
+
+    const rendered = renderCandidate(candidate);
+    const userText = user[USER.payload][USER_PAYLOAD.text];
+    const attachments = userAttachments(user);
+    // `response[4]`/`[5]` hold reasoning steps and tool calls (never copied);
+    // when they carry an image-generation card, only the card's prompt is kept.
+    // `data[3]` describes the newest turn.
+    const turnMarkers = [...extrasMarkers([response[4], response[5]]), ...(index === 0 ? tailMarkers : [])];
+    const replyText = [rendered.text, ...turnMarkers].filter(Boolean).join("\n\n");
+    // A turn whose reply is empty still happened (the user saw the prompt and
+    // whatever Gemini returned), so it is kept with an explicit placeholder
+    // instead of being dropped.
+    messages.push(
+      { id: `${ids[1]}:user`, role: "user", text: userText || (attachments.length ? "" : "[Gemini content: prompt not in this field]") },
+      { id: candidate[CANDIDATE.id], role: "assistant", text: replyText || (isBlank(candidate[CANDIDATE.text]) ? "[Gemini content: empty reply]" : "[Gemini content: unfinished reply]") }
+    );
+    if (attachments.length) messages[messages.length - 2].attachments = attachments;
   }
   return { platform: "gemini", id, title: "", messages };
 }

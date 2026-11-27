@@ -67,6 +67,10 @@ Manual installs do not auto-update. To update, download the new ZIP and repeat t
 - A site change can break copying until an update is released.
 - Some very long or branched conversations are refused with an error rather than copied partially.
 
+## Support
+
+ChatCopy is free. If it saves you time, you can [buy me a coffee on Ko-fi](https://ko-fi.com/lidahe).
+
 ## For developers
 
 Requires Node.js 20 or newer.
